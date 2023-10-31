@@ -133,7 +133,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BlockComponent.cpp" />
+    <ClCompile Include="BlockContainer.cpp" />
+    <ClCompile Include="I_Component.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="TextComponent.cpp" />
+    <ClCompile Include="TextContainer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BlockComponent.h" />
+    <ClInclude Include="BlockContainer.h" />
+    <ClInclude Include="I_Component.h" />
+    <ClInclude Include="TextComponent.h" />
+    <ClInclude Include="TextContainer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

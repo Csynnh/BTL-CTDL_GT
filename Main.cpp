@@ -2,108 +2,12 @@
 #include <iostream>
 #include <vector>
 #include <memory>
+#include "BlockContainer.h"
+#include "TextContainer.h"
 using namespace sf;
 using namespace std;
 const int SCRWIDTH = 585;
 const int SCRHEIGHT = 900;
-class IComponent
-{
-public:
-    virtual ~IComponent() {}
-    virtual void Render(RenderWindow &ref) {}
-};
-
-class Block2DComponent : public IComponent
-{
-public:
-    Block2DComponent(string filepath, float xPosotion = 1, float yPosotion = 1, float xScale = 1, float yScale = 1, string day = "", string date = "")
-    {
-        m_texture.loadFromFile(filepath);
-        m_sprite.setTexture(m_texture);
-        m_sprite.setScale(xScale, yScale);
-        m_sprite.setPosition(xPosotion, yPosotion);
-    }
-    ~Block2DComponent() {}
-    void Render(RenderWindow &ref)
-    {
-        ref.draw(m_sprite);
-    }
-
-private:
-    Texture m_texture;
-    Sprite m_sprite;
-};
-class TextComponent : public IComponent
-{
-private:
-    Text m_text;
-
-public:
-    TextComponent(string text, Font &font, unsigned int size, Color color = Color::Black, float xPosotion = 1, float yPosotion = 1)
-    {
-        m_text.setFont(font);
-        m_text.setString(text);
-        m_text.setCharacterSize(size);
-        m_text.setFillColor(color);
-        m_text.setPosition(xPosotion, yPosotion);
-    }
-    ~TextComponent() {}
-    void Render(RenderWindow &ref)
-    {
-        ref.draw(m_text);
-    }
-};
-class DateContainer
-{
-private:
-    string m_name;
-    vector<shared_ptr<IComponent>> m_components;
-
-public:
-    DateContainer(string name)
-    {
-        m_name = name;
-    }
-    ~DateContainer() {}
-    void AddDateContainer(string filepath, float xPosotion, float yPosotion, float xScale, float yScale)
-    {
-        shared_ptr<Block2DComponent> item = make_shared<Block2DComponent>(filepath, xPosotion, yPosotion, xScale, yScale);
-        m_components.push_back(item);
-    }
-    void Render(RenderWindow &ref)
-    {
-        for (int i = 0; i < m_components.size(); i++)
-        {
-            m_components[i]->Render(ref);
-        }
-    }
-};
-class TextContainer
-{
-private:
-    string m_name;
-    vector<shared_ptr<IComponent>> m_components;
-
-public:
-    TextContainer(string name)
-    {
-        m_name = name;
-    }
-    ~TextContainer() {}
-    void AddTextContainer(string text, Font &font, unsigned int size, Color color, float xPosotion = 1, float yPosotion = 1)
-    {
-        shared_ptr<TextComponent> item = make_shared<TextComponent>(text, font, size, color, xPosotion, yPosotion);
-        m_components.push_back(item);
-    }
-    void Render(RenderWindow &ref)
-    {
-        for (int i = 0; i < m_components.size(); i++)
-        {
-            m_components[i]->Render(ref);
-        }
-    }
-};
-
 int main()
 {
     RenderWindow window(VideoMode(SCRWIDTH, SCRHEIGHT), "SFML Image Loading");
@@ -191,40 +95,40 @@ int main()
     bgAction.setScale(0.3, 0.3);
     bgAction.setPosition(xIconPrevPosition, yIconPrevPosition + 380);
     // set action'title
-    Text actionTitle("Chon ngay chieu", fontTitle, 18);
-    actionTitle.setFillColor(Color(255, 255, 255));
-    actionTitle.move(xIconPrevPosition + 25, yIconPrevPosition + 390);
+
+    textTest.AddTextContainer("Chon ngay chieu", fontTitle, 18, Color::White, xIconPrevPosition + 25, yIconPrevPosition + 390);
+    textTest.AddTextContainer("Chon rap chieu", fontTitle, 18, Color::White, xIconPrevPosition + 25, yIconPrevPosition + 520);
 
     // text component test
     // TextComponent textTest("heellooo", fontTitle, 40, 100, 100);
 
-    DateContainer backgroundGraySmall("container");
+    BlockContainer backgroundGraySmall("container");
     for (int i = 0; i < 14; i++)
     {
         if (i < 7)
-            backgroundGraySmall.AddDateContainer("images/bg-gray.png", xIconPrevPosition + 72 * i, yIconPrevPosition + 440, 0.16, 0.16);
+            backgroundGraySmall.AddBlockContainer("images/bg-gray.png", xIconPrevPosition + 72 * i, yIconPrevPosition + 440, 0.16, 0.16);
         else
-            backgroundGraySmall.AddDateContainer("images/bg-gray.png", xIconPrevPosition + 72 * (i - 7), yIconPrevPosition + 570 + 200, 0.16, 0.16);
+            backgroundGraySmall.AddBlockContainer("images/bg-gray.png", xIconPrevPosition + 72 * (i - 7), yIconPrevPosition + 570 + 200, 0.16, 0.16);
     }
-    DateContainer backgroundGrayLarge("container");
+    BlockContainer backgroundGrayLarge("container");
     for (int i = 0; i < 4; i++)
     {
         if (i < 2)
-            backgroundGrayLarge.AddDateContainer("images/bg-gray.png", xIconPrevPosition + 280 * i, yIconPrevPosition + 570, 0.48, 0.16);
+            backgroundGrayLarge.AddBlockContainer("images/bg-gray.png", xIconPrevPosition + 280 * i, yIconPrevPosition + 570, 0.48, 0.16);
         else
-            backgroundGrayLarge.AddDateContainer("images/bg-gray.png", xIconPrevPosition + 280 * (i - 2), yIconPrevPosition + 570 + 70, 0.48, 0.16);
+            backgroundGrayLarge.AddBlockContainer("images/bg-gray.png", xIconPrevPosition + 280 * (i - 2), yIconPrevPosition + 570 + 70, 0.48, 0.16);
     }
-    DateContainer backgroundRed("container");
+    BlockContainer backgroundRed("container");
     for (int i = 0; i < 3; i++)
     {
         if (i == 2)
         {
 
-            backgroundRed.AddDateContainer("images/bg-red.png", xIconPrevPosition, yIconPrevPosition + 380 + i * 130 + 70, 0.3, 0.3);
+            backgroundRed.AddBlockContainer("images/bg-red.png", xIconPrevPosition, yIconPrevPosition + 380 + i * 130 + 70, 0.3, 0.3);
         }
         else
         {
-            backgroundRed.AddDateContainer("images/bg-red.png", xIconPrevPosition, yIconPrevPosition + 380 + i * 130, 0.3, 0.3);
+            backgroundRed.AddBlockContainer("images/bg-red.png", xIconPrevPosition, yIconPrevPosition + 380 + i * 130, 0.3, 0.3);
         }
     }
     while (window.isOpen())
@@ -259,7 +163,6 @@ int main()
         window.draw(filmPoster);
 
         window.draw(bgAction);
-        window.draw(actionTitle);
 
         backgroundGrayLarge.Render(window);
         backgroundGraySmall.Render(window);
