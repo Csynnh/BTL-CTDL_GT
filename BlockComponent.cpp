@@ -7,6 +7,6 @@ BlockComponent::BlockComponent(string filepath, float xPosotion = 1, float yPoso
     m_sprite.setPosition(xPosotion, yPosotion);
 }
 void BlockComponent::Render(RenderWindow& ref)
-{
+{ /// test ne`
     ref.draw(m_sprite);
 }
