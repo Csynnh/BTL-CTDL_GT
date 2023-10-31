@@ -47,85 +47,58 @@ int main()
     Font fontHeader;
     fontHeader.loadFromFile("fonts/Montserrat/Montserrat-Semibold.ttf");
 
-    TextContainer textTest("test Text");
+    TextContainer m_text("test Text");
     // set film's name
-    textTest.AddTextContainer("Ke Kien Tao", fontFilmName, 30, Color::Black, xLogoPosition + 20, 100); // -15
+    m_text.AddTextContainer("Ke Kien Tao", fontFilmName, 30, Color::Black, xLogoPosition + 20, 100); // -15
     // set film's category
-    textTest.AddTextContainer("The loai:", fontTitle, 18, Color::Black, xLogoPosition - 15, 135);
+    m_text.AddTextContainer("The loai:", fontTitle, 18, Color::Black, xLogoPosition - 15, 135);
     // set film's category content
-    textTest.AddTextContainer("Hanh dong, KHVT,...", fontDesc, 16, Color::Black, xLogoPosition - 15 + 85, 137);
+    m_text.AddTextContainer("Hanh dong, KHVT,...", fontDesc, 16, Color::Black, xLogoPosition - 15 + 85, 137);
     // set film's time
-    textTest.AddTextContainer("Thoi luong:", fontTitle, 18, Color::Black, xLogoPosition - 15, 160);
+    m_text.AddTextContainer("Thoi luong:", fontTitle, 18, Color::Black, xLogoPosition - 15, 160);
     // set film's time content
-    textTest.AddTextContainer("120p", fontDesc, 16, Color::Black, xLogoPosition - 15 + 110, 162);
+    m_text.AddTextContainer("120p", fontDesc, 16, Color::Black, xLogoPosition - 15 + 110, 162);
     // set film's language
-    textTest.AddTextContainer("Ngon ngu:", fontTitle, 18, Color::Black, xLogoPosition - 15, 185);
+    m_text.AddTextContainer("Ngon ngu:", fontTitle, 18, Color::Black, xLogoPosition - 15, 185);
     // set film's language content
-    textTest.AddTextContainer("Tieng Anh - Phu de Tieng Viet", fontDesc, 16, Color::Black, xLogoPosition - 15 + 105, 187);
+    m_text.AddTextContainer("Tieng Anh - Phu de Tieng Viet", fontDesc, 16, Color::Black, xLogoPosition - 15 + 105, 187);
     // set film's Rate
-    textTest.AddTextContainer("Danh gia:", fontTitle, 18, Color::Black, xLogoPosition - 15, 210);
+    m_text.AddTextContainer("Danh gia:", fontTitle, 18, Color::Black, xLogoPosition - 15, 210);
     // set film's Rate content
-    textTest.AddTextContainer("4,6/5", fontDesc, 16, Color::Black, xLogoPosition - 15 + 100, 212);
+    m_text.AddTextContainer("4,6/5", fontDesc, 16, Color::Black, xLogoPosition - 15 + 100, 212);
     // set film's Date
-    textTest.AddTextContainer("Khoi Chieu:", fontTitle, 18, Color::Black, xLogoPosition - 15, 235);
+    m_text.AddTextContainer("Khoi Chieu:", fontTitle, 18, Color::Black, xLogoPosition - 15, 235);
     // set film's Date content
-    textTest.AddTextContainer("10/11/2023", fontDesc, 16, Color::Black, xLogoPosition - 15 + 110, 237);
+    m_text.AddTextContainer("10/11/2023", fontDesc, 16, Color::Black, xLogoPosition - 15 + 110, 237);
 
     // set film's description heading
 
-    textTest.AddTextContainer("Mo ta phim", fontHeader, 26, Color::Black, xIconPrevPosition, 320);
+    m_text.AddTextContainer("Mo ta phim", fontHeader, 26, Color::Black, xIconPrevPosition, 320);
     // set film's director
-    textTest.AddTextContainer("Dao dien:", fontTitle, 18, Color::Black, xIconPrevPosition, 350);
+    m_text.AddTextContainer("Dao dien:", fontTitle, 18, Color::Black, xIconPrevPosition, 350);
     // set film's director content
-    textTest.AddTextContainer("Huynh Thi Truc Lam", fontDesc, 16, Color::Black, xIconPrevPosition + 110, 352);
+    m_text.AddTextContainer("Huynh Thi Truc Lam", fontDesc, 16, Color::Black, xIconPrevPosition + 110, 352);
     // set film's actor
-    textTest.AddTextContainer("Dien vien long tieng:", fontTitle, 18, Color::Black, xIconPrevPosition, 375);
+    m_text.AddTextContainer("Dien vien long tieng:", fontTitle, 18, Color::Black, xIconPrevPosition, 375);
     // set film's actor desc
-    textTest.AddTextContainer("Brie Larson, Samuel L. Jackson, Zaw... ", fontDesc, 16, Color::Black, xIconPrevPosition + 200, 377);
+    m_text.AddTextContainer("Brie Larson, Samuel L. Jackson, Zaw... ", fontDesc, 16, Color::Black, xIconPrevPosition + 200, 377);
 
-    // set bg-action
-    Texture bgRed;
-    bgRed.loadFromFile("images/bg-red.png");
-    Sprite bgAction(bgRed);
-    bgAction.setScale(0.3, 0.3);
-    bgAction.setPosition(xIconPrevPosition, yIconPrevPosition + 380);
     // set action'title
 
-    textTest.AddTextContainer("Chon ngay chieu", fontTitle, 18, Color::White, xIconPrevPosition + 25, yIconPrevPosition + 390);
-    textTest.AddTextContainer("Chon rap chieu", fontTitle, 18, Color::White, xIconPrevPosition + 25, yIconPrevPosition + 520);
+    m_text.AddTextContainer("Chon ngay chieu", fontTitle, 18, Color::White, xIconPrevPosition + 25, yIconPrevPosition + 390);
+    m_text.AddTextContainer("Chon rap chieu", fontTitle, 18, Color::White, xIconPrevPosition + 25, yIconPrevPosition + 520);
 
     // text component test
-    // TextComponent textTest("heellooo", fontTitle, 40, 100, 100);
+    // TextComponent m_text("heellooo", fontTitle, 40, 100, 100);
 
-    BlockContainer backgroundGraySmall("container");
-    for (int i = 0; i < 14; i++)
+    BlockContainer m_backgroundGrayLarge("container");
+    for (int i = 0; i < 2; i++)
     {
-        if (i < 7)
-            backgroundGraySmall.AddBlockContainer("images/bg-gray.png", xIconPrevPosition + 72 * i, yIconPrevPosition + 440, 0.16, 0.16);
-        else
-            backgroundGraySmall.AddBlockContainer("images/bg-gray.png", xIconPrevPosition + 72 * (i - 7), yIconPrevPosition + 570 + 200, 0.16, 0.16);
+        m_backgroundGrayLarge.AddBlockContainer("images/bg-gray.png", xIconPrevPosition + 280 * i, yIconPrevPosition + 570, 1, 1);
     }
-    BlockContainer backgroundGrayLarge("container");
-    for (int i = 0; i < 4; i++)
-    {
-        if (i < 2)
-            backgroundGrayLarge.AddBlockContainer("images/bg-gray.png", xIconPrevPosition + 280 * i, yIconPrevPosition + 570, 0.48, 0.16);
-        else
-            backgroundGrayLarge.AddBlockContainer("images/bg-gray.png", xIconPrevPosition + 280 * (i - 2), yIconPrevPosition + 570 + 70, 0.48, 0.16);
-    }
-    BlockContainer backgroundRed("container");
-    for (int i = 0; i < 3; i++)
-    {
-        if (i == 2)
-        {
 
-            backgroundRed.AddBlockContainer("images/bg-red.png", xIconPrevPosition, yIconPrevPosition + 380 + i * 130 + 70, 0.3, 0.3);
-        }
-        else
-        {
-            backgroundRed.AddBlockContainer("images/bg-red.png", xIconPrevPosition, yIconPrevPosition + 380 + i * 130, 0.3, 0.3);
-        }
-    }
+    m_backgroundGrayLarge.AddBlockContainer("images/bg-red.png", xIconPrevPosition, yIconPrevPosition + 380 + 70, 0.3, 0.3);
+
     while (window.isOpen())
     {
         Event event;
@@ -155,13 +128,8 @@ int main()
         window.draw(iconPrev);
         window.draw(logoName);
         window.draw(filmPoster);
-
-        window.draw(bgAction);
-
-        backgroundGrayLarge.Render(window);
-        backgroundGraySmall.Render(window);
-        backgroundRed.Render(window);
-        textTest.Render(window);
+        m_backgroundGrayLarge.Render(window);
+        m_text.Render(window);
         window.display();
     }
 
