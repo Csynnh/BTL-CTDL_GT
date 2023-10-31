@@ -15,11 +15,6 @@ int main()
     float yLogoPosition = 20.0f;
     float xIconPrevPosition = 40.0f;
     float yIconPrevPosition = 35.0f;
-    // set backgound white for app
-    Texture texture;
-    texture.loadFromFile("images/bg-main.jpg");
-    Sprite bgMain(texture);
-    bgMain.setScale(1, 3.0f);
     // set logo
     Font font;
     font.loadFromFile("fonts/Montserrat/Montserrat-ExtraBold.ttf");
@@ -37,9 +32,9 @@ int main()
     iconPrev.setPosition(xIconPrevPosition, yIconPrevPosition);
     // set film'poster
     Texture film;
-    film.loadFromFile("images/data/ke-kien-tao.jpg");
+    film.loadFromFile("images/data/ke-kien-tao.png");
     Sprite filmPoster(film);
-    filmPoster.setScale(0.3, 0.3);
+    filmPoster.setScale(0.55, 0.55);
     filmPoster.setPosition(xIconPrevPosition, 100.0f);
 
     // set font default
@@ -156,8 +151,7 @@ int main()
             }
         }
 
-        window.clear();
-        window.draw(bgMain);
+        window.clear(Color::White);
         window.draw(iconPrev);
         window.draw(logoName);
         window.draw(filmPoster);

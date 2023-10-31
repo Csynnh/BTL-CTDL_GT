@@ -1,5 +1,5 @@
 #include "BlockComponent.h"
-BlockComponent::BlockComponent(string filepath, float xPosotion = 1, float yPosotion = 1, float xScale = 1, float yScale = 1, string day = "", string date = "")
+BlockComponent::BlockComponent(string filepath, float xPosotion , float yPosotion, float xScale, float yScale )
 {
     m_texture.loadFromFile(filepath);
     m_sprite.setTexture(m_texture);

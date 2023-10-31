@@ -6,7 +6,7 @@ using namespace std;
 class BlockComponent : public I_Component
 {
 public:
-    BlockComponent(string filepath, float xPosotion = 1, float yPosotion = 1, float xScale = 1, float yScale = 1, string day = "", string date = "");
+    BlockComponent(string filepath, float xPosotion = 1, float yPosotion = 1, float xScale = 1, float yScale = 1);
     ~BlockComponent() {};
     void Render(RenderWindow& ref);
 private:

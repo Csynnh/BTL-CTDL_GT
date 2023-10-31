@@ -1,5 +1,5 @@
 #include "TextComponent.h" 
-TextComponent::TextComponent(string text, Font& font, unsigned int size, Color color = Color::Black, float xPosotion = 1, float yPosotion = 1)
+TextComponent::TextComponent(string text, Font& font, unsigned int size, Color color, float xPosotion, float yPosotion)
 {
     m_text.setFont(font);
     m_text.setString(text);
