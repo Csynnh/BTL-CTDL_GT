@@ -4,10 +4,13 @@
 #include <memory>
 #include "BlockContainer.h"
 #include "TextContainer.h"
+#include "SecondaryPage.h"
+
 using namespace sf;
 using namespace std;
 const int SCRWIDTH = 585;
 const int SCRHEIGHT = 900;
+
 int main()
 {
     RenderWindow window(VideoMode(SCRWIDTH, SCRHEIGHT), "SFML Image Loading");
@@ -15,21 +18,22 @@ int main()
     float yLogoPosition = 20.0f;
     float xIconPrevPosition = 40.0f;
     float yIconPrevPosition = 35.0f;
-    // set logo
+
+    // Header
+    // set logo app
     Font font;
     font.loadFromFile("fonts/Montserrat/Montserrat-ExtraBold.ttf");
-    Text logoName("SLC2T", font, 50);
-    logoName.setFillColor(Color(186, 15, 46));
-    // center x position
-    FloatRect textRect = logoName.getLocalBounds();
-    logoName.setOrigin(textRect.width / 2, textRect.height / 2);
-    logoName.setPosition(Vector2f(SCRWIDTH / 2.0f, yLogoPosition * 2));
+    TextContainer LogoApp("Icon");
+    LogoApp.AddTextContainer("SLC2T", font, 50, Color::Red, xLogoPosition, yLogoPosition);
+
     // set icon previous
     Texture icon;
     icon.loadFromFile("images/icon-prev.png");
     Sprite iconPrev(icon);
     iconPrev.setScale(0.2, 0.2);
     iconPrev.setPosition(xIconPrevPosition, yIconPrevPosition);
+
+    // Content
     // set film'poster
     Texture film;
     film.loadFromFile("images/data/ke-kien-tao.png");
@@ -71,7 +75,7 @@ int main()
     // set film's Date content
     m_text.AddTextContainer("10/11/2023", fontDesc, 16, Color::Black, xLogoPosition - 15 + 110, 237);
 
-    // set film's description heading
+    //// set film's description heading
 
     m_text.AddTextContainer("Mo ta phim", fontHeader, 26, Color::Black, xIconPrevPosition, 320);
     // set film's director
@@ -83,21 +87,23 @@ int main()
     // set film's actor desc
     m_text.AddTextContainer("Brie Larson, Samuel L. Jackson, Zaw... ", fontDesc, 16, Color::Black, xIconPrevPosition + 200, 377);
 
-    // set action'title
+    //// set action'title
 
-    m_text.AddTextContainer("Chon ngay chieu", fontTitle, 18, Color::White, xIconPrevPosition + 25, yIconPrevPosition + 390);
-    m_text.AddTextContainer("Chon rap chieu", fontTitle, 18, Color::White, xIconPrevPosition + 25, yIconPrevPosition + 520);
+    // m_text.AddTextContainer("Chon ngay chieu", fontTitle, 18, Color::White, xIconPrevPosition + 25, yIconPrevPosition + 390);
+    // m_text.AddTextContainer("Chon rap chieu", fontTitle, 18, Color::White, xIconPrevPosition + 25, yIconPrevPosition + 520);
 
     // text component test
-    // TextComponent m_text("heellooo", fontTitle, 40, 100, 100);
 
     BlockContainer m_backgroundGrayLarge("container");
-    for (int i = 0; i < 2; i++)
+    for (int i = 0; i < 7; i++)
     {
-        m_backgroundGrayLarge.AddBlockContainer("images/bg-gray.png", xIconPrevPosition + 280 * i, yIconPrevPosition + 570, 1, 1);
+        m_backgroundGrayLarge.AddBlockContainer("images/bg-gray.png", 40 + 74 * i, 550, 1, 1);
     }
 
-    m_backgroundGrayLarge.AddBlockContainer("images/bg-red.png", xIconPrevPosition, yIconPrevPosition + 380 + 70, 0.3, 0.3);
+    m_backgroundGrayLarge.AddBlockContainer("images/bg-red.png", xIconPrevPosition, 480, 0.3, 0.3);
+
+    SecondaryPage item(1);
+    item.DrawContent();
 
     while (window.isOpen())
     {
@@ -125,11 +131,9 @@ int main()
         }
 
         window.clear(Color::White);
-        window.draw(iconPrev);
-        window.draw(logoName);
-        window.draw(filmPoster);
-        m_backgroundGrayLarge.Render(window);
-        m_text.Render(window);
+        LogoApp.Render(window);
+         m_text.Render(window);
+        item.Render(window);
         window.display();
     }
 
