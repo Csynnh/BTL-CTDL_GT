@@ -6,6 +6,7 @@ using namespace sf;
 using namespace std;
 const int SCRWIDTH = 585;
 const int SCRHEIGHT = 900;
+bool mouseWasReleased;
 
 int main()
 {
@@ -32,22 +33,28 @@ int main()
                     cout << " \t specifically the w key" << endl;
                 }
             }
-            if (event.type == Event::MouseButtonPressed)
+            mouseWasReleased = false;
+
+            if (event.type == Event::MouseButtonReleased)
             {
-                cout << "Mouse button pressed" << endl;
+                mouseWasReleased = true;
+                if (event.mouseButton.button == Mouse::Left)
+                {
+                    sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+                    second.HandleChoseDate(mousePos.x, mousePos.y);
+                    second.HandleChoseCenima(mousePos.x, mousePos.y);
+                    second.HandleChoseTime(mousePos.x, mousePos.y);
+                }
             }
+
             if (event.type == sf::Event::MouseMoved && event.type != sf::Event::MouseLeft)
             {
-                /*int mouseX = event.mouseMove.x;
-                int mouseY = event.mouseMove.y;
-                std::cout << "Mouse X: " << mouseX << " Mouse Y: " << mouseY << std::endl;*/
+                // int mouseX = event.mouseMove.x;
+                // int mouseY = event.mouseMove.y;
+                // std::cout << "Mouse X: " << mouseX << " Mouse Y: " << mouseY << std::endl;
 
-                sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-
-                second.hoverDate(mousePos.x, mousePos.y);
+                // second.hoverDate(mousePos.x, mousePos.y);
             }
-
-
         }
 
         window.clear(Color::White);
