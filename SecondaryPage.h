@@ -19,6 +19,9 @@ public:
 	SecondaryPage(int num);
 	~SecondaryPage();
 	void draw(RenderWindow &window);
+	void Hover(int PosX, int PosY);
+	void Blur(int PosX, int PosY);
+	void hoverDate(int Posx, int PosY);
 	// void Hover();
 	// void Blur();
 	// int GetPressedItem() { return selectedItemIndex; }

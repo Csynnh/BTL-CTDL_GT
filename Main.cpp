@@ -36,6 +36,18 @@ int main()
             {
                 cout << "Mouse button pressed" << endl;
             }
+            if (event.type == sf::Event::MouseMoved && event.type != sf::Event::MouseLeft)
+            {
+                /*int mouseX = event.mouseMove.x;
+                int mouseY = event.mouseMove.y;
+                std::cout << "Mouse X: " << mouseX << " Mouse Y: " << mouseY << std::endl;*/
+
+                sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+
+                second.hoverDate(mousePos.x, mousePos.y);
+            }
+
+
         }
 
         window.clear(Color::White);

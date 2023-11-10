@@ -107,21 +107,66 @@ void SecondaryPage::draw(RenderWindow &window)
 	m_blocks.Render(window);
 	m_texts.Render(window);
 }
-// void SecondaryPage::MoveUp()
-//{
-//	if (selectedItemIndex - 1 >= 0)
-//	{
-//		menu[selectedItemIndex].setFillColor(sf::Color::White);
-//		selectedItemIndex--;
-//		menu[selectedItemIndex].setFillColor(sf::Color::Red);
-//	}
-// }
-// void SecondaryPage::MoveDown()
-//{
-//	if (selectedItemIndex + 1 < 3)
-//	{
-//		menu[selectedItemIndex].setFillColor(sf::Color::White);
-//		selectedItemIndex++;
-//		menu[selectedItemIndex].setFillColor(sf::Color::Red);
-//	}
-// }
+void SecondaryPage::Hover(int PosX, int PosY) {
+
+	for (int i = 0; i < 7; i++)
+	{
+		if (PosX > 40 + 73 * i && PosX < 106 + 73 * i)
+			m_blocks.AddBlockContainer("images/bg-gray-hover.png", 40 + 73 * i, 5.75 * 85, 1, 1);
+	}
+	for (int i = 0; i < 2; i++)
+	{
+		if (PosX > 40 + (260 + 73) * i && PosX < 330 + 73 * i)
+			m_blocks.AddBlockContainer("images/bg-gray-larger-hover.png", 40 + 73 * i, 640, 1, 1);
+	}
+
+}
+void SecondaryPage::Blur(int PosX, int PosY) {
+	for (int i = 0; i < 7; i++)
+	{
+		m_blocks.AddBlockContainer("images/bg-gray.png", 40 + 73 * i, 5.75 * 85, 1, 1);
+	}
+
+}
+
+void SecondaryPage::hoverDate(int Posx, int PosY) {
+
+	int xMinGray = 40;
+	int yMinGray = 470;//khong doi
+	int xMaxGray = 524;
+	int yMaxGray = 516;//khong doi
+
+	if ((Posx > xMinGray && Posx < xMaxGray) )
+	{
+		if (PosY > yMinGray && PosY < yMaxGray)
+		{
+			for (int i = 0; i < 7; i++)
+			{
+				if (Posx < 106 + 73 * i || Posx > 113 + 73 * i) {
+					Hover(Posx, PosY);
+				}
+				else {
+					Blur(Posx, PosY);
+
+				}
+			}
+		}
+		else if (PosY >  640 && PosY < 740)
+		{
+			for (int i = 0; i < 4; i++)
+			{
+				if (Posx < 260|| Posx > 330) {
+					Hover(Posx, PosY);
+				}
+				else {
+					Blur(Posx, PosY);
+				}
+			}
+		}
+	}
+	else {
+		Blur(Posx, PosY);
+
+	}
+}
+
