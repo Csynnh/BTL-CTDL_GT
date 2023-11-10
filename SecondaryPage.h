@@ -14,4 +14,7 @@ public:
 	}
 	void DrawContent();
 	void Render(RenderWindow &ref);
+	void Hover(int PosX, int PosY);
+	void Blur(int PosX, int PosY);
+	void hoverDate(int Posx,int PosY);
 };

@@ -116,18 +116,19 @@ int main()
                 cout << "Handling event closed" << endl;
                 exit(EXIT_SUCCESS);
             }
-            if (event.type == Event::KeyPressed)
+           
+            //lay toa do x y cua chuot khi con nam trong window
+            else if (event.type == sf::Event::MouseMoved && event.type != sf::Event::MouseLeft)
             {
-                cout << "A key was pressedd" << endl;
-                if (event.key.code == Keyboard::W)
-                {
-                    cout << " \t specifically the w key" << endl;
-                }
+                /*int mouseX = event.mouseMove.x;
+                int mouseY = event.mouseMove.y;
+                std::cout << "Mouse X: " << mouseX << " Mouse Y: " << mouseY << std::endl;*/
+                
+                sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+
+                item.hoverDate(mousePos.x,mousePos.y);
             }
-            if (event.type == Event::MouseButtonPressed)
-            {
-                cout << "Mouse button pressed" << endl;
-            }
+
         }
 
         window.clear(Color::White);
