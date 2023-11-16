@@ -10,7 +10,9 @@ SecondaryPage::SecondaryPage(int num) : m_blocks("second"), m_texts("second")
 	fontHeader.loadFromFile("fonts/Montserrat/Montserrat-Semibold.ttf");
 	selectedItemIndex = num;
 
-	string filePath = "images/data/ke-kien-tao.png";
+	listMovie x;
+
+	string filePath = x.a[0].filePath;
 	string filePathIconPrev = "images/icon-prev.png";
 
 	// icon previous
@@ -22,27 +24,26 @@ SecondaryPage::SecondaryPage(int num) : m_blocks("second"), m_texts("second")
 	// ChoseCenima(m_blocks, m_texts);
 	// ChoseTime(m_blocks, m_texts);
 
-	listMovie x;
 
 	m_texts.AddTextContainer("SLC2T", fontFilmName, 50, Color::Red, 212, 35);
 	// set film's name
-	m_texts.AddTextContainer(x.a[2].name, fontFilmName, 30, Color::Black, xPosInfo, 113);
+	m_texts.AddTextContainer(x.a[0].name, fontFilmName, 30, Color::Black, xPosInfo, 113);
 	// set film's category
 	m_texts.AddTextContainer("The loai:", fontTitle, 18, Color::Black, xPosInfo, 150);
 	// set film's category content
-	m_texts.AddTextContainer(x.a[2].type, fontDesc, 16, Color::Black, xPosInfo + 85, 150 + 2);
+	m_texts.AddTextContainer(x.a[0].type, fontDesc, 16, Color::Black, xPosInfo + 85, 150 + 2);
 	// set film's time
 	m_texts.AddTextContainer("Thoi luong:", fontTitle, 18, Color::Black, xPosInfo, 172);
 	// set film's time content
-	m_texts.AddTextContainer("120p", fontDesc, 16, Color::Black, xPosInfo + 110, 172 + 2);
+	m_texts.AddTextContainer(x.a[0].time, fontDesc, 16, Color::Black, xPosInfo + 110, 172 + 2);
 	// set film's language
 	m_texts.AddTextContainer("Ngon ngu:", fontTitle, 18, Color::Black, xPosInfo, 193);
 	// set film's language content
-	m_texts.AddTextContainer(x.a[2].language, fontDesc, 16, Color::Black, xPosInfo + 102, 193 + 2);
+	m_texts.AddTextContainer(x.a[0].language, fontDesc, 16, Color::Black, xPosInfo + 102, 193 + 2);
 	// set film's Rate
 	m_texts.AddTextContainer("Danh gia:", fontTitle, 18, Color::Black, xPosInfo, 215);
 	// set film's Rate content
-	m_texts.AddTextContainer("4,6/5", fontDesc, 16, Color::Black, xPosInfo + 95, 215 + 2);
+	m_texts.AddTextContainer(x.a[0].rating, fontDesc, 16, Color::Black, xPosInfo + 95, 215 + 2);
 	// set film's Date
 	m_texts.AddTextContainer("Khoi Chieu:", fontTitle, 18, Color::Black, xPosInfo, 238);
 	// set film's Date content
@@ -50,22 +51,22 @@ SecondaryPage::SecondaryPage(int num) : m_blocks("second"), m_texts("second")
 	//sửa ở đây nè
 	//set film's Time content
 	m_texts.AddTextContainer("Thoi luong:", fontTitle, 18, Color::Black, xPosInfo, 262);
-	m_texts.AddTextContainer(x.a[2].time, fontDesc, 16, Color::Black, xPosInfo + 108, 264);
+	m_texts.AddTextContainer(x.a[0].time, fontDesc, 16, Color::Black, xPosInfo + 108, 264);
 	//// set film's description heading
 
 	m_texts.AddTextContainer("Mo ta phim", fontHeader, 26, Color::Black, xPos, 310);
 	// set film's director
 	m_texts.AddTextContainer("Dao dien:", fontTitle, 18, Color::Black, xPos, 340);
 	// set film's director content
-	m_texts.AddTextContainer("Huynh Thi Truc Lam", fontDesc, 16, Color::Black, xPos + 95, 340 + 2);
+	m_texts.AddTextContainer(x.a[0].director, fontDesc, 16, Color::Black, xPos + 95, 340 + 2);
 	// set film's actor
 	m_texts.AddTextContainer("Dien vien long tieng:", fontTitle, 18, Color::Black, xPos, 365);
 	// set film's actor desc
-	m_texts.AddTextContainer("Brie Larson, Samuel L. Jackson, Zaw... ", fontDesc, 16, Color::Black, xPos + 198, 365 + 2);
+	m_texts.AddTextContainer(x.a[0].artist, fontDesc, 16, Color::Black, xPos + 198, 365 + 2);
 	//sửa ở đây
 	// set film' content
 	m_texts.AddTextContainer("Noi dung phim:", fontTitle, 18, Color::Black, xPos, 392);
-	m_texts.AddTextContainer(x.a[2].content, fontDesc, 16, Color::Black, xPos + 150 , 392 + 2);
+	m_texts.AddTextContainer(x.a[0].content, fontDesc, 16, Color::Black, xPos + 150 , 392 + 2);
 	// set action'title
 
 	// set action'options

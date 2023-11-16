@@ -4,8 +4,9 @@ using namespace std;
 class movie
 {
 public:
-	string rating, time, name, type, language, rate, director, artist, content;
-	void setData(string rating, string time, string name, string type, string language, string rate, string director, string artist, string content) {
+	string filePath,rating, time, name, type, language, rate, director, artist, content;
+	void setData(string filePath,string rating, string time, string name, string type, string language, string rate, string director, string artist, string content) {
+		this->filePath = filePath;
 		this->rating = rating;
 		this->time = time;
 		this->name = name;
@@ -23,6 +24,7 @@ public:
 	movie a[6];
 	listMovie() {
 		a[0].setData(
+			"images/data/nam-dem-kinh-hoang.png",
 			"4.5 / 5",
 			"1 gio 49 phut",
 			"Nam dem kinh hoang",
@@ -34,6 +36,7 @@ public:
 			"Nhan vien bao ve Mike bat dau lam viec tai ..."
 		);
 		a[1].setData(
+			"images/data/marvel.png",
 			"4.6 / 5",
 			"1 gio 45 phut",
 			"The Marvels",
@@ -45,6 +48,7 @@ public:
 			"Phan tiep theo cua Captain Marvel (2019)"
 		);
 		a[2].setData(
+			"images/data/ke-kien-tao.png",
 			"4.5 / 5",
 			"2 gio 15 phut",
 			"Ke kien tao",
@@ -56,6 +60,7 @@ public:
 			"Vien canh tuong lai ve cuoc chien keo dai ..."
 		);
 		a[3].setData(
+			"images/data/sieu-dang.png",
 			"4.5 / 5",
 			"1 gio 35 phut",
 			"Sieu dang",
@@ -67,6 +72,7 @@ public:
 			"Mot mang thien thach roi vao Trai Dat ..."
 		);
 		a[4].setData(
+			"images/data/cu-may-an-tien.png",
 			"4.5 / 5",
 			"2 gio 13 phut",
 			"Cu may an tien",
@@ -78,6 +84,7 @@ public:
 			"Lay boi canh thuc te nhung nam 1970..."
 		);
 		a[5].setData(
+			"images/data/biet-doi-danh-thue.png",
 			"4.5 / 5",
 			"1 gio 43 phut",
 			"Biet doi danh thue 4",
