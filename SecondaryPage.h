@@ -1,6 +1,7 @@
 #pragma once
 #include "TextContainer.h"
 #include "BlockContainer.h"
+#include "dataBase.h"
 
 class SecondaryPage
 {

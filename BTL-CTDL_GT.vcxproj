@@ -135,6 +135,7 @@
   <ItemGroup>
     <ClCompile Include="BlockComponent.cpp" />
     <ClCompile Include="BlockContainer.cpp" />
+    <ClCompile Include="dataBase.cpp" />
     <ClCompile Include="I_Component.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="SecondaryPage.cpp" />
@@ -144,6 +145,7 @@
   <ItemGroup>
     <ClInclude Include="BlockComponent.h" />
     <ClInclude Include="BlockContainer.h" />
+    <ClInclude Include="dataBase.h" />
     <ClInclude Include="I_Component.h" />
     <ClInclude Include="SecondaryPage.h" />
     <ClInclude Include="TextComponent.h" />
