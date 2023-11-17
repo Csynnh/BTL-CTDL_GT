@@ -29,8 +29,9 @@ FourthPage::FourthPage() : m_blocks("fourth"), m_texts("fourth")
 
 
     //TextContainer textTest("test Text");
+    m_texts.AddTextContainer("SLC2T", fontFilmName, 50, Color::Red, 212, 35);
     // set film's name
-    m_texts.AddTextContainer("Ke Kien Tao", fontFilmName, 30, Color(186, 15, 46), 220 - 15, 100);
+    m_texts.AddTextContainer("Ke Kien Tao", fontFilmName, 30, Color::Black, 220 - 15, 100);
     // set film's category
     m_texts.AddTextContainer("The loai:", fontTitle, 18, Color::Black, xLogoPosition - 15, 135);
     // set film's category content
