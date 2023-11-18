@@ -148,7 +148,7 @@ void SecondaryPage::ChoseDate(BlockContainer &m_blocks, TextContainer &m_texts)
 	m_blocks.AddBlockContainer("images/bg-red.png", xPos, 4.95 * yPos + 0 * 150, 0.3, 0.3);
 	for (int i = 0; i < 7; i++)
 	{
-		m_blocks.AddBlockContainer("images/bg-gray.png", xPos + wBgGray * i, 5.75 * yPos, 1, 1);
+		m_blocks.AddBlockContainer("images/bg-gray-page2.png", xPos + wBgGray * i, 5.75 * yPos, 1, 1);
 	}
 }
 void SecondaryPage::ChoseCenima(BlockContainer &m_blocks, TextContainer &m_texts)
@@ -178,7 +178,7 @@ void SecondaryPage::ChoseTime(BlockContainer &m_blocks, TextContainer &m_texts)
 	for (int i = 0; i < 7; i++)
 	{
 		m_texts.AddTextContainer(time[i], fontTitle, 16, Color::Black, xPos + 22.5 + i * 73, 5.1 * yPos + 418);
-		m_blocks.AddBlockContainer("images/bg-gray.png", xPos + wBgGray * i, 5.1 * yPos + 400, 1, 1);
+		m_blocks.AddBlockContainer("images/bg-gray-page2.png", xPos + wBgGray * i, 5.1 * yPos + 400, 1, 1);
 	}
 }
 
@@ -204,7 +204,7 @@ void SecondaryPage::HandleChoseDate(int xMouse, int yMouse)
 				clearBgGray();
 				for (int i = 0; i < 7; i++)
 				{
-					m_blocks.AddBlockContainer("images/bg-gray.png", xPos + wBgGray * i, 5.75 * yPos, 1, 1);
+					m_blocks.AddBlockContainer("images/bg-gray-page2.png", xPos + wBgGray * i, 5.75 * yPos, 1, 1);
 				}
 			}
 			// handle
@@ -269,7 +269,7 @@ void SecondaryPage::HandleChoseTime(int xMouse, int yMouse)
 				TimeWasSelected = -1;
 				for (int i = 0; i < 7; i++)
 				{
-					m_blocks.AddBlockContainer("images/bg-gray.png", xPos + wBgGray * i, 5.1 * yPos + 400, 1, 1);
+					m_blocks.AddBlockContainer("images/bg-gray-page2.png", xPos + wBgGray * i, 5.1 * yPos + 400, 1, 1);
 				}
 			}
 			// handle
