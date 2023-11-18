@@ -1,8 +1,9 @@
 #pragma once
+
 #include "TextContainer.h"
 #include "BlockContainer.h"
-
-class SecondaryPage
+#include "MainTab.h"
+class SecondaryPage : public MainTab
 {
 private:
 	int selectedItemIndex;
@@ -33,16 +34,19 @@ public:
 	// int getDateWasSelected() { return isDateWasSelected; }
 	// int getCenimaWasSelected() { return isCenimaWasSelected; }
 	// int getFlimWasSelected() { return isFlimWasSelected; }
-	void draw(RenderWindow &window);
-	void ChoseDate(BlockContainer &a, TextContainer &b);
-	void ChoseCenima(BlockContainer &a, TextContainer &b);
-	void ChoseTime(BlockContainer &a, TextContainer &b);
+	void draw(RenderWindow& window);
+	void ChoseDate(BlockContainer& a, TextContainer& b);
+	void ChoseCenima(BlockContainer& a, TextContainer& b);
+	void ChoseTime(BlockContainer& a, TextContainer& b);
 	void HandleChoseDate(int xMouse, int yMouse);
 	void HandleChoseCenima(int xMouse, int yMouse);
 	void HandleChoseTime(int xMouse, int yMouse);
 	void clearBgGray();
 	void clearChoseCenima();
 	void clearChoseTime();
+	void HandleMouseClick(int x, int y);
+	void Click(int x, int y);
+	int GetState();
 
 	// void Hover(int PosX, int PosY);
 	// void Blur(int PosX, int PosY);
@@ -51,4 +55,7 @@ public:
 	// void Hover();
 	// void Blur();
 	// int GetPressedItem() { return selectedItemIndex; }
+	int GetCurrentState();
+	void SetCurrentState(int state);
 };
+
