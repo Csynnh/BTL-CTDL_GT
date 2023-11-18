@@ -1,5 +1,6 @@
 #include "SecondaryPage.h"
 
+
 SecondaryPage::SecondaryPage(int num) : m_blocks("second"), m_texts("second")
 {
 	// set font default
@@ -9,7 +10,7 @@ SecondaryPage::SecondaryPage(int num) : m_blocks("second"), m_texts("second")
 	fontDesc.loadFromFile("fonts/Montserrat/Montserrat-Regular.ttf");
 	fontHeader.loadFromFile("fonts/Montserrat/Montserrat-Semibold.ttf");
 	selectedItemIndex = num;
-
+	curentState = num;
 	string filePath = "images/data/ke-kien-tao.png";
 	string filePathIconPrev = "images/icon-prev.png";
 
@@ -65,7 +66,7 @@ SecondaryPage::SecondaryPage(int num) : m_blocks("second"), m_texts("second")
 SecondaryPage::~SecondaryPage()
 {
 }
-void SecondaryPage::draw(RenderWindow &window)
+void SecondaryPage::draw(RenderWindow& window)
 {
 	m_blocks.Render(window);
 	m_texts.Render(window);
@@ -136,9 +137,9 @@ void SecondaryPage::draw(RenderWindow &window)
 // 	}
 // }
 
-void SecondaryPage::ChoseDate(BlockContainer &m_blocks, TextContainer &m_texts)
+void SecondaryPage::ChoseDate(BlockContainer& m_blocks, TextContainer& m_texts)
 {
-	string date[7][2] = {{"T2", "19/11"}, {"T3", "20/11"}, {"T4", "21/11"}, {"T5", "22/11"}, {"T6", "23/11"}, {"T7", "24/11"}, {"CN", "25/11"}};
+	string date[7][2] = { {"T2", "19/11"}, {"T3", "20/11"}, {"T4", "21/11"}, {"T5", "22/11"}, {"T6", "23/11"}, {"T7", "24/11"}, {"CN", "25/11"} };
 	m_texts.AddTextContainer("Chon ngay chieu", fontTitle, 18, Color::White, xPos + 22.5, 40 + 390);
 	for (int i = 0; i < 7; i++)
 	{
@@ -151,7 +152,7 @@ void SecondaryPage::ChoseDate(BlockContainer &m_blocks, TextContainer &m_texts)
 		m_blocks.AddBlockContainer("images/bg-gray.png", xPos + wBgGray * i, 5.75 * yPos, 1, 1);
 	}
 }
-void SecondaryPage::ChoseCenima(BlockContainer &m_blocks, TextContainer &m_texts)
+void SecondaryPage::ChoseCenima(BlockContainer& m_blocks, TextContainer& m_texts)
 {
 	m_texts.AddTextContainer("Chon rap chieu", fontTitle, 18, Color::White, xPos + 32.5, 40 + 541);
 
@@ -169,9 +170,9 @@ void SecondaryPage::ChoseCenima(BlockContainer &m_blocks, TextContainer &m_texts
 			m_blocks.AddBlockContainer("images/bg-gray-larger.png", xPos + wBgGrayLarger * (i - 2), 5.3 * yPos + 245, 1, 1);
 	}
 }
-void SecondaryPage::ChoseTime(BlockContainer &m_blocks, TextContainer &m_texts)
+void SecondaryPage::ChoseTime(BlockContainer& m_blocks, TextContainer& m_texts)
 {
-	string time[7] = {"7h", "9h", "11h", "13h", "15h", "17h", "19h"};
+	string time[7] = { "7h", "9h", "11h", "13h", "15h", "17h", "19h" };
 	m_texts.AddTextContainer("Suat chieu", fontTitle, 18, Color::White, xPos + 52.5, 40 + 740);
 
 	m_blocks.AddBlockContainer("images/bg-red.png", xPos, 5 * yPos + 2 * 172.5, 0.3, 0.3);
@@ -295,8 +296,8 @@ void SecondaryPage::clearChoseCenima()
 	{
 		m_blocks.AddBlockContainer("images/bg-white.png", xPos, 4.95 * yPos + 1 * 150, 1, 1);
 		// if (TimeWasSelected > 0)
-		for (int i = 0; i < 5; i++)
-			m_texts.pop();
+		/*for (int i = 0; i < 5; i++)
+			m_texts.pop();*/
 	}
 	for (int i = 0; i < 4; i++)
 	{
@@ -311,12 +312,54 @@ void SecondaryPage::clearChoseTime()
 	if (TimeWasSelected < 0)
 	{
 		m_blocks.AddBlockContainer("images/bg-white.png", xPos, 5 * yPos + 2 * 174, 1, 1);
-		if (CenimaWasSelected >= 0)
+		/*if (CenimaWasSelected >= 0)
 			for (int i = 0; i < 8; i++)
-				m_texts.pop();
+				m_texts.pop();*/
 	}
 	for (int i = 0; i < 7; i++)
 	{
 		m_blocks.AddBlockContainer("images/bg-white-small.png", xPos + wBgGray * i, 5.1 * yPos + 400, 1, 1);
 	}
+}
+void SecondaryPage::HandleMouseClick(int x, int y)
+{
+	int width = 119;// chieu rong
+	int height = 39; // chieu dai
+	// 
+	cout << x << ":" << y << endl;
+	if (x >= 109 && x <= 109 + width && y >= 95 && y <= 95 + height)
+	{
+		curentState = 1;
+		cout << "Da click vao phim chieu" << endl;
+	}
+	else if (x >= 248 && x <= 248 + width && y >= 95 && y <= 95 + height)
+	{
+		curentState = 2;
+		cout << " Da click vao o Rap chieu" << endl;
+	}
+	else if (x >= 380 && x <= 380 + width && y >= 95 && y <= 95 + height)
+	{
+		curentState = 3;
+		cout << " Da click vao o Thong tin" << endl;
+	}
+	else if (x >= 40 && x <= 80 && y >= 40 && y <= 80)
+	{
+		cout << " Da click back button" << endl;
+		curentState = 1;
+	}
+}
+void SecondaryPage::Click(int x, int y) {
+
+}
+int SecondaryPage::GetState()
+{
+	return selectedItemIndex;
+}
+int SecondaryPage::GetCurrentState()
+{
+	return curentState;
+}
+void SecondaryPage::SetCurrentState(int state)
+{
+	curentState = state;
 }
