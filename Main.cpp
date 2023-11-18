@@ -1,19 +1,21 @@
-﻿#include <SFML/Graphics.hpp>
+#include <SFML/Graphics.hpp>
 #include <iostream>
-#include "SecondaryPage.h"
+
+#include "FirstPage.h"
+#include "SecondTab.h"
+#include "ThirdTab.h"
+#include "ScreenManager.h"
 
 using namespace sf;
 using namespace std;
 const int SCRWIDTH = 585;
 const int SCRHEIGHT = 900;
-bool mouseWasReleased;
 
 int main()
 {
     RenderWindow window(VideoMode(SCRWIDTH, SCRHEIGHT), "SFML Image Loading");
 
-    SecondaryPage second(1);
-
+    ScreenManager screenManager;
     while (window.isOpen())
     {
         Event event;
@@ -33,32 +35,32 @@ int main()
                     cout << " \t specifically the w key" << endl;
                 }
             }
-            mouseWasReleased = false;
-
-            if (event.type == Event::MouseButtonReleased)
+            if (event.type == Event::MouseButtonPressed)
             {
-                mouseWasReleased = true;
-                if (event.mouseButton.button == Mouse::Left)
-                {
-                    sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-                    second.HandleChoseDate(mousePos.x, mousePos.y);
-                    second.HandleChoseCenima(mousePos.x, mousePos.y);
-                    second.HandleChoseTime(mousePos.x, mousePos.y);
-                }
+                cout << "Da kik chuot thanh cong" << endl;
             }
-
-            if (event.type == sf::Event::MouseMoved && event.type != sf::Event::MouseLeft)
+            // click 3 o tuy chon: dung cho ca 3 ham
+            if (event.type == Event::MouseButtonPressed)
             {
-                // int mouseX = event.mouseMove.x;
-                // int mouseY = event.mouseMove.y;
-                // std::cout << "Mouse X: " << mouseX << " Mouse Y: " << mouseY << std::endl;
+                
+                int mouseX = event.mouseButton.x;
+                int mouseY = event.mouseButton.y;
+                screenManager.HandleMouseClick(mouseX, mouseY);
 
-                // second.hoverDate(mousePos.x, mousePos.y);
             }
+            // click phim: dùng cho firstPage
+            if (event.type == Event::MouseButtonPressed)
+            {
+                int mouseX = event.mouseButton.x;
+                int mouseY = event.mouseButton.y;
+                screenManager.Click(mouseX, mouseY);
+               
+            }
+            
         }
 
         window.clear(Color::White);
-        second.draw(window);
+        screenManager.draw(window);
         window.display();
     }
 
