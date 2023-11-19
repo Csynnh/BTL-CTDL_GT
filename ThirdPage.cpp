@@ -1,10 +1,8 @@
-#include "ThirdPage.h"
+﻿#include "ThirdPage.h"
 
 
-ThirdPage::ThirdPage(vector<int> seats) : m_blocks("third"), m_texts("third")
+ThirdPage::ThirdPage(int num) : m_blocks("third"), m_texts("third")
 {
-    singleSeat = 45;
-    coupleSeat = 90;
 
     string filePathIconPrev = "images/icon-prev.png";
     string filePath = "images/data/ke-kien-tao.png";
@@ -19,6 +17,8 @@ ThirdPage::ThirdPage(vector<int> seats) : m_blocks("third"), m_texts("third")
     float xIconPrevPosition = 40.0f;
     float yIconPrevPosition = 35.0f;
 
+    selectedItemIndex = num;
+    curentState = num;
 
     exBold.loadFromFile("fonts/Montserrat/Montserrat-ExtraBold.ttf");
     fontFilmName.loadFromFile("fonts/Montserrat/Montserrat-Bold.ttf");
@@ -152,46 +152,64 @@ void ThirdPage::draw(RenderWindow& window)
     m_texts.Render(window);
 }
 
-bool ThirdPage::isButtonPressed(RenderWindow& window, Vector2i mousePos, bool key) {
-    string filePath;
-    float xPos, yPos, xScale, yScale;
-    if (key) {
-        filePath = "images/bg-red.png";
-        xPos = 40.0f;
-        yPos = 35.0f + 380;
-        xScale = 0.3;
-        yScale = 0.3;
-    }
-    else {
-        filePath = "images/data/ke-kien-tao.png";
-        xPos = 40.0f;
-        yPos = 44;
-        xScale = 0.22;
-        yScale = 0.2;
-    }
-    BlockComponent button(filePath, xPos, yPos, xScale, yScale);
-    return (button.getGlobalBounds().contains(window.mapPixelToCoords(mousePos)));
-}
+//bool ThirdPage::isButtonPressed(RenderWindow& window, Vector2i mousePos, bool key) {
+//    string filePath;
+//    float xPos, yPos, xScale, yScale;
+//    if (key) {
+//        filePath = "images/bg-red.png";
+//        xPos = 40.0f;
+//        yPos = 35.0f + 380;
+//        xScale = 0.3;
+//        yScale = 0.3;
+//    }
+//    else {
+//        filePath = "images/data/ke-kien-tao.png";
+//        xPos = 40.0f;
+//        yPos = 44;
+//        xScale = 0.22;
+//        yScale = 0.2;
+//    }
+//    BlockComponent button(filePath, xPos, yPos, xScale, yScale);
+//    return (button.getGlobalBounds().contains(window.mapPixelToCoords(mousePos)));
+//}
 
 
-int ThirdPage::seatSelected(RenderWindow& window, Vector2i mousePos) {
+int ThirdPage::seatSelected(int x, int y) {
 
-    vector<BlockComponent> seats;
+    const int rows = 4; // Tổng số hàng là 4 (3 hàng trên và 1 hàng dưới cùng)
+    const int cols = 10;
+    const int extraCols = 5; // Số cột ở hàng dưới cùng
+    const int height = 35;
+    const int width_1 = 42; // Chiều rộng của ghế ở 3 hàng trên
+    const int width_2 = 85; // Chiều rộng của ghế ở hàng dưới cùng
+    const int spacing_1 = 8;
+    const int spacing_2 = 15; // Khoảng cách giữa các vật thể ở hàng dưới cùng
+    const int startX = 40;
+    const int startY = 550;
 
-    for (int i = 0; i < 35; i++) {
-        float xScale = 0.1;
-        float xMargin = 50.0f;
-        if (i > 29) {
-            xScale = 0.2f;
-            xMargin = 100.0f;
+    for (int i = 0; i < 35; ++i) {
+
+        int row = i / cols;
+        int colUpper = i % cols;
+        int colLower = i % extraCols;
+        int xLeft;
+        int yTop;
+
+        if (row == rows - 1 && colLower < extraCols) {
+            xLeft = startX + colLower * (width_2 + spacing_2);
+            yTop = startY + row * (height + spacing_1);
+
+            if (xLeft <= x && x <= xLeft + width_2 && yTop <= y && y <= yTop + height) {
+                return i;
+            }
         }
-        BlockComponent m_seat("images/bg-gray-page3.png", 40 + (i % 10) * xMargin, 35.0f + 520 + (i / 10) * 40, xScale, 0.1f);
-        seats.push_back(m_seat);
-    }
+        else {
+            xLeft = startX + colUpper * (width_1 + spacing_1);
+            yTop = startY + row * (height + spacing_1);
 
-    for (int i = 0; i < 35; i++) {
-        if (seats[i].getGlobalBounds().contains(window.mapPixelToCoords(mousePos))) {
-            return i;
+            if (xLeft <= x && x <= xLeft + width_1 && yTop <= y && y <= yTop + height) {
+                return i;
+            }
         }
     }
 
@@ -258,4 +276,58 @@ void ThirdPage::seatUpdate(vector<int> seats, bool key) {
     else {
         m_texts.AddTextContainer(to_string(price * 1000), exBold, 16, Color::White, 480.0f, 825.0f);
     }
+}
+
+
+
+
+
+void ThirdPage::HandleMouseClick(int x, int y)
+{
+   if (x >= 40 && x <= 80 && y >= 40 && y <= 80)
+    {
+        cout << " Da click back button" << endl;
+        curentState -= 10;
+    }
+
+   if (x >= 40 && x <= 240 && y >= 415 && y <= 455) {
+       curentState += 10;
+   }
+   
+   int temp = this->seatSelected(x, y);
+   
+   auto it = find(seats.begin(), seats.end(), temp);
+   if (it != seats.end()) {
+       // hủy chọn nếu ghế đã được chọn trước đó
+       this->seatUpdate(seats, 0);
+       seats.erase(remove(seats.begin(), seats.end(), temp), seats.end());
+       this->seatColorUpdate(seats);
+       this->seatUpdate(seats, 1);
+       cout << '~' << this->seatName(temp) << endl;
+   }
+   else {
+       // chọn ghế nếu ghế chưa được chọn
+       if (temp != -1) {
+           this->seatUpdate(seats, 0);
+           seats.push_back(temp);
+           this->seatColorUpdate(seats);
+           this->seatUpdate(seats, 1);
+           cout << this->seatName(temp) << endl;
+       }
+   }
+}
+void ThirdPage::Click(int x, int y) {
+
+}
+int ThirdPage::GetState()
+{
+    return selectedItemIndex;
+}
+int ThirdPage::GetCurrentState()
+{
+    return curentState;
+}
+void ThirdPage::SetCurrentState(int state)
+{
+    curentState = state;
 }

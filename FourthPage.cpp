@@ -1,9 +1,10 @@
 #include "FourthPage.h"
 
 
-FourthPage::FourthPage() : m_blocks("fourth"), m_texts("fourth")
+FourthPage::FourthPage(int num) : m_blocks("fourth"), m_texts("fourth")
 {
-
+    selectedItemIndex = num;
+    curentState = num;
     string filePathIconPrev = "images/icon-prev.png";
     string filePath = "images/data/ke-kien-tao.png";
 
@@ -115,4 +116,31 @@ bool FourthPage::prevButtonIsPressed(RenderWindow& window, Vector2i mousePos) {
 bool FourthPage::nextButtonIsPressed(RenderWindow& window, Vector2i mousePos) {
     BlockComponent nextIcon("images/bg-red.png", 70.0f, 825.0f, 0.65, 0.35);
     return (nextIcon.getGlobalBounds().contains(window.mapPixelToCoords(mousePos)));
+}
+
+
+
+
+void FourthPage::HandleMouseClick(int x, int y)
+{
+    if (x >= 40 && x <= 80 && y >= 40 && y <= 80)
+    {
+        cout << " Da click back button" << endl;
+        curentState -= 10;
+    }
+}
+void FourthPage::Click(int x, int y) {
+
+}
+int FourthPage::GetState()
+{
+    return selectedItemIndex;
+}
+int FourthPage::GetCurrentState()
+{
+    return curentState;
+}
+void FourthPage::SetCurrentState(int state)
+{
+    curentState = state;
 }

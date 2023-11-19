@@ -3,6 +3,7 @@
 #include "BlockContainer.h"
 class MainTab {
 protected:
+	vector<int> seats;
 	int selectedItemIndex;
 	Font font;
 	Font fontFilmName;

@@ -57,6 +57,9 @@
     <ClCompile Include="ThirdTab.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="dataBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="I_Component.h">
@@ -99,6 +102,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ThirdTab.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dataBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

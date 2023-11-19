@@ -17,3 +17,4 @@ public:
 	void SetCurrentState(int state);
 	//void Click(int x, int y);
 };
+

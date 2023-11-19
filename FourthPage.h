@@ -1,9 +1,11 @@
 #pragma once
 #include "TextContainer.h"
 #include "BlockContainer.h"
-class FourthPage
+#include "MainTab.h"
+class FourthPage : public MainTab
 {
 private:
+	vector<int> seats;
 	int selectedItemIndex;
 	Font font;
 	Font fontFilmName;
@@ -15,7 +17,7 @@ private:
 	TextContainer m_texts;
 
 public:
-	FourthPage();
+	FourthPage(int num);
 	~FourthPage();
 	void draw(RenderWindow& window);
 	bool prevButtonIsPressed(RenderWindow& window, Vector2i mousePos);
@@ -24,4 +26,9 @@ public:
 	void resetSeatText(vector<int> seats);
 	//	bool isSeatSelected(RenderWindow& window);
 	//	vector<int> seatSelected(RenderWindow& window);
+	void HandleMouseClick(int x, int y);
+	void Click(int x, int y);
+	int GetState();
+	int GetCurrentState();
+	void SetCurrentState(int state);
 };

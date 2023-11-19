@@ -17,3 +17,4 @@ public:
 	int GetCurrentState();
 	void SetCurrentState(int state);
 };
+

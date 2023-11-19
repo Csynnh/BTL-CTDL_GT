@@ -1,12 +1,13 @@
 #pragma once
 #include "TextContainer.h"
 #include "BlockContainer.h"
-
-class ThirdPage
+#include "MainTab.h"
+class ThirdPage : public MainTab
 {
 private:
-	int singleSeat;
-	int coupleSeat;
+	vector<int> seats;
+	int singleSeat = 45;
+	int coupleSeat = 90;
 	int selectedItemIndex;
 	Font font;
 	Font exBold;
@@ -15,17 +16,22 @@ private:
 	Font fontDesc;
 	Font fontHeader;
 	Text menu[50];
-	vector<int> seatIndex;
 	BlockContainer m_blocks;
 	TextContainer m_texts;
 
 public:
-	ThirdPage(vector<int> seats);
+	ThirdPage(int num);
 	~ThirdPage();
 	void draw(RenderWindow& window);
-	bool isButtonPressed(RenderWindow& window, Vector2i mousePos, bool key);
-	int seatSelected(RenderWindow& window, Vector2i mousePos);
+	//bool isButtonPressed(RenderWindow& window, Vector2i mousePos, bool key);
+	int seatSelected(int x, int y);
 	void seatColorUpdate(vector<int> seatIndex);
 	string seatName(int seatIndex);
 	void seatUpdate(vector<int> seats, bool key);
+
+	void HandleMouseClick(int x, int y);
+	void Click(int x, int y);
+	int GetState();
+	int GetCurrentState();
+	void SetCurrentState(int state);
 };
