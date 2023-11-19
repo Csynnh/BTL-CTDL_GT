@@ -334,7 +334,7 @@ void SecondaryPage::HandleMouseClick(int x, int y)
 
 	this->HandleChoseDate(x, y);
 	this->HandleChoseCenima(x, y);
-	if (CenimaWasSelected != -1) {
+	if (TimeWasSelected != -1) {
 		curentState += 10;
 	}
 	this->HandleChoseTime(x, y);
@@ -358,6 +358,9 @@ void SecondaryPage::SetCurrentState(int state)
 
 
 
+
+
+// scr bên dưới của nhánh dataBase
 /*
 
 #include "SecondaryPage.h"

@@ -128,6 +128,11 @@ void FourthPage::HandleMouseClick(int x, int y)
         cout << " Da click back button" << endl;
         curentState -= 10;
     }
+
+    if (77 <= x && x <= 500 && 813 <= y && y <= 854) {
+        cout << "Da xac nhan dat ve!" << endl;
+        curentState = 1;
+    }
 }
 void FourthPage::Click(int x, int y) {
 

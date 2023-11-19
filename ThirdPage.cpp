@@ -288,6 +288,9 @@ void ThirdPage::HandleMouseClick(int x, int y)
     {
         cout << " Da click back button" << endl;
         curentState -= 10;
+        seats.clear();
+        this->seatColorUpdate(seats);
+        this->seatUpdate(seats, 0);
     }
 
    if (x >= 40 && x <= 240 && y >= 415 && y <= 455) {
