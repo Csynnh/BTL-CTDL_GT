@@ -8,7 +8,6 @@ SecondaryPage::SecondaryPage(int num) : m_blocks("second"), m_texts("second")
 	fontTitle.loadFromFile("fonts/Montserrat/Montserrat-SemiBold.ttf");
 	fontDesc.loadFromFile("fonts/Montserrat/Montserrat-Regular.ttf");
 	fontHeader.loadFromFile("fonts/Montserrat/Montserrat-Semibold.ttf");
-	selectedItemIndex = num;
 
 	string filePath = "images/data/ke-kien-tao.png";
 	string filePathIconPrev = "images/icon-prev.png";
@@ -65,80 +64,79 @@ SecondaryPage::SecondaryPage(int num) : m_blocks("second"), m_texts("second")
 SecondaryPage::~SecondaryPage()
 {
 }
-void SecondaryPage::draw(RenderWindow &window)
+void SecondaryPage::draw(RenderWindow& window)
 {
 	m_blocks.Render(window);
 	m_texts.Render(window);
 }
-// void SecondaryPage::Hover(int PosX, int PosY)
-// {
-// 	for (int i = 0; i < 7; i++)
-// 	{
-// 		if (PosX > 40 + 73 * i && PosX < 106 + 73 * i && PosY < 640)
-// 			m_blocks.AddBlockContainer("images/bg-gray-hover.png", 40 + 73 * i, 5.75 * 85, 1, 1);
-// 	}
-// 	for (int i = 0; i < 2; i++)
-// 	{
-// 		if (PosX > 40 + (260 + 73) * i && PosX < 330 + 73 * i)
-// 			m_blocks.AddBlockContainer("images/bg-gray-larger-hover.png", 40 + (260 + 25) * i, 640, 1, 1);
-// 	}
+// void SecondaryPage::MoveUp()
+//{
+//	if (selectedItemIndex - 1 >= 0)
+//	{
+//		menu[selectedItemIndex].setFillColor(sf::Color::White);
+//		selectedItemIndex--;
+//		menu[selectedItemIndex].setFillColor(sf::Color::Red);
+//	}
 // }
-// void SecondaryPage::Blur(int PosX, int PosY)
-// {
-// 	if (PosY < 640)
-// 	{
-// 		for (int i = 0; i < 7; i++)
-// 		{
-// 			m_blocks.AddBlockContainer("images/bg-gray.png", 40 + 73 * i, 5.75 * 85, 1, 1);
-// 		}
-// 	}
-// }
-// void SecondaryPage::hoverDate(int Posx, int PosY)
-// {
-// 	int xMinGray = 40;
-// 	int yMinGray = 470; // khong doi
-// 	int xMaxGray = 524;
-// 	int yMaxGray = 516; // khong doi
-// 	if ((Posx > xMinGray && Posx < xMaxGray))
-// 	{
-// 		if (PosY > yMinGray && PosY < yMaxGray)
-// 		{
-// 			for (int i = 0; i < 7; i++)
-// 			{
-// 				if (Posx < 106 + 73 * i || Posx > 113 + 73 * i)
-// 				{
-// 					Hover(Posx, PosY);
-// 				}
-// 				else
-// 				{
-// 					Blur(Posx, PosY);
-// 				}
-// 			}
-// 		}
-// 		else if (PosY > 640 && PosY < 740)
-// 		{
-// 			for (int i = 0; i < 4; i++)
-// 			{
-// 				if (Posx < 260 || Posx > 330)
-// 				{
-// 					Hover(Posx, PosY);
-// 				}
-// 				else
-// 				{
-// 					Blur(Posx, PosY);
-// 				}
-// 			}
-// 		}
-// 	}
-// 	else
-// 	{
-// 		Blur(Posx, PosY);
-// 	}
+// void SecondaryPage::MoveDown()
+//{
+//	if (selectedItemIndex + 1 < 3)
+//	{
+//		menu[selectedItemIndex].setFillColor(sf::Color::White);
+//		selectedItemIndex++;
+//		menu[selectedItemIndex].setFillColor(sf::Color::Red);
+//	}
 // }
 
-void SecondaryPage::ChoseDate(BlockContainer &m_blocks, TextContainer &m_texts)
+
+
+//bool SecondaryPage::prevButtonIsPressed(RenderWindow& window, Event event) {
+//	
+//	BlockComponent prevIcon("images/icon-prev.png", 40.0f, 44.0f, 0.22, 0.2);
+//
+//	if (event.type == Event::MouseButtonReleased && event.mouseButton.button == Mouse::Left) {
+//		Vector2i mousePos = Mouse::getPosition(window);
+//		if (prevIcon.getGlobalBounds().contains(window.mapPixelToCoords(mousePos))) {
+//			return true;
+//		}
+//	}
+//	return false;
+//}
+
+
+bool SecondaryPage::prevButtonIsPressed(RenderWindow& window) {
+
+	static bool isButtonPressed = false;
+	BlockComponent prevIcon("images/data/ke-kien-tao.png", 40.0f, 44.0f, 0.22, 0.2);
+
+	if (Mouse::isButtonPressed(Mouse::Left)) {
+		Vector2i mousePos = Mouse::getPosition(window);
+		if (prevIcon.getGlobalBounds().contains(window.mapPixelToCoords(mousePos))) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+
+bool SecondaryPage::nextButtonIsPressed(RenderWindow& window) {
+
+	BlockComponent nextIcon("images/data/ke-kien-tao.png", 40.0f, 113.0f, 0.55, 0.55);
+
+	if (Mouse::isButtonPressed(Mouse::Left)) {
+		Vector2i mousePos = Mouse::getPosition(window);
+		if (nextIcon.getGlobalBounds().contains(window.mapPixelToCoords(mousePos))) {
+			return true;
+		}
+	}
+	return false;
+}
+
+
+void SecondaryPage::ChoseDate(BlockContainer& m_blocks, TextContainer& m_texts)
 {
-	string date[7][2] = {{"T2", "19/11"}, {"T3", "20/11"}, {"T4", "21/11"}, {"T5", "22/11"}, {"T6", "23/11"}, {"T7", "24/11"}, {"CN", "25/11"}};
+	string date[7][2] = { {"T2", "19/11"}, {"T3", "20/11"}, {"T4", "21/11"}, {"T5", "22/11"}, {"T6", "23/11"}, {"T7", "24/11"}, {"CN", "25/11"} };
 	m_texts.AddTextContainer("Chon ngay chieu", fontTitle, 18, Color::White, xPos + 22.5, 40 + 390);
 	for (int i = 0; i < 7; i++)
 	{
@@ -151,7 +149,7 @@ void SecondaryPage::ChoseDate(BlockContainer &m_blocks, TextContainer &m_texts)
 		m_blocks.AddBlockContainer("images/bg-gray.png", xPos + wBgGray * i, 5.75 * yPos, 1, 1);
 	}
 }
-void SecondaryPage::ChoseCenima(BlockContainer &m_blocks, TextContainer &m_texts)
+void SecondaryPage::ChoseCenima(BlockContainer& m_blocks, TextContainer& m_texts)
 {
 	m_texts.AddTextContainer("Chon rap chieu", fontTitle, 18, Color::White, xPos + 32.5, 40 + 541);
 
@@ -169,9 +167,9 @@ void SecondaryPage::ChoseCenima(BlockContainer &m_blocks, TextContainer &m_texts
 			m_blocks.AddBlockContainer("images/bg-gray-larger.png", xPos + wBgGrayLarger * (i - 2), 5.3 * yPos + 245, 1, 1);
 	}
 }
-void SecondaryPage::ChoseTime(BlockContainer &m_blocks, TextContainer &m_texts)
+void SecondaryPage::ChoseTime(BlockContainer& m_blocks, TextContainer& m_texts)
 {
-	string time[7] = {"7h", "9h", "11h", "13h", "15h", "17h", "19h"};
+	string time[7] = { "7h", "9h", "11h", "13h", "15h", "17h", "19h" };
 	m_texts.AddTextContainer("Suat chieu", fontTitle, 18, Color::White, xPos + 52.5, 40 + 740);
 
 	m_blocks.AddBlockContainer("images/bg-red.png", xPos, 5 * yPos + 2 * 172.5, 0.3, 0.3);
@@ -224,8 +222,7 @@ void SecondaryPage::HandleChoseCenima(int xMouse, int yMouse)
 	int space = wBgGrayLarger;				  // khong doi
 	for (int i = 0; i < 2; i++)
 	{
-		// Hover(xMouse, yMouse);
-		if (xMouse > xMinGray + space * i && xMouse < 260 + space * i && yMouse <= yMaxGray && yMouse >= yMinGray && CenimaWasSelected != i)
+		if (xMouse > xMinGray + space * i && xMouse < 260 + space * i && yMouse <= yMinGray + 43 && yMouse >= yMinGray && CenimaWasSelected != i)
 		{
 			// clear
 			if (CenimaWasSelected >= 0)
@@ -248,7 +245,32 @@ void SecondaryPage::HandleChoseCenima(int xMouse, int yMouse)
 			m_blocks.AddBlockContainer("images/bg-gray-larger-hover.png", xPos + wBgGrayLarger * (i), 5.3 * yPos + 190, 1, 1);
 			ChoseTime(m_blocks, m_texts);
 		}
+		if (xMouse > xMinGray + space * i && xMouse < 260 + space * i && yMouse <= yMaxGray && yMouse >= 5.3 * yPos + 245 && CenimaWasSelected != i + 2)
+		{
+			// clear
+			if (CenimaWasSelected >= 0)
+			{
+				TimeWasSelected = -1;
+				clearChoseCenima();
+				for (int i = 0; i < 4; i++)
+				{
+					if (i < 2)
+						m_blocks.AddBlockContainer("images/bg-gray-larger.png", xPos + wBgGrayLarger * (i), 5.3 * yPos + 190, 1, 1);
+					else
+						m_blocks.AddBlockContainer("images/bg-gray-larger.png", xPos + wBgGrayLarger * (i - 2), 5.3 * yPos + 245, 1, 1);
+				}
+				clearChoseTime();
+			}
+			// handle
+			CenimaWasSelected = i + 2;
+			cout << "'Rap " << CenimaWasSelected << endl;
+
+			m_blocks.AddBlockContainer("images/bg-gray-larger-hover.png", xPos + wBgGrayLarger * (i), 5.3 * yPos + 245, 1, 1);
+			ChoseTime(m_blocks, m_texts);
+		}
+
 	}
+
 }
 void SecondaryPage::HandleChoseTime(int xMouse, int yMouse)
 {

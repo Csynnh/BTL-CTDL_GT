@@ -5,7 +5,6 @@
 class SecondaryPage
 {
 private:
-	int selectedItemIndex;
 	Font font;
 	Font fontFilmName;
 	Font fontTitle;
@@ -26,28 +25,26 @@ private:
 	int DateWasSelected = -1;
 	int CenimaWasSelected = -1;
 	int TimeWasSelected = -1;
-
 public:
 	SecondaryPage(int num);
 	~SecondaryPage();
-	// int getDateWasSelected() { return isDateWasSelected; }
-	// int getCenimaWasSelected() { return isCenimaWasSelected; }
-	// int getFlimWasSelected() { return isFlimWasSelected; }
-	void draw(RenderWindow &window);
-	void ChoseDate(BlockContainer &a, TextContainer &b);
-	void ChoseCenima(BlockContainer &a, TextContainer &b);
-	void ChoseTime(BlockContainer &a, TextContainer &b);
+	void draw(RenderWindow& window);
+	void ChoseDate(BlockContainer& a, TextContainer& b);
+	void ChoseCenima(BlockContainer& a, TextContainer& b);
+	void ChoseTime(BlockContainer& a, TextContainer& b);
 	void HandleChoseDate(int xMouse, int yMouse);
 	void HandleChoseCenima(int xMouse, int yMouse);
 	void HandleChoseTime(int xMouse, int yMouse);
 	void clearBgGray();
 	void clearChoseCenima();
 	void clearChoseTime();
-
-	// void Hover(int PosX, int PosY);
-	// void Blur(int PosX, int PosY);
-	// void hoverDate(int Posx, int PosY);
-
+	bool prevButtonIsPressed(RenderWindow& window);
+	bool nextButtonIsPressed(RenderWindow& window);
+	void handleResetValue() {
+		DateWasSelected = -1;
+		CenimaWasSelected = -1;
+		TimeWasSelected = -1;
+	}
 	// void Hover();
 	// void Blur();
 	// int GetPressedItem() { return selectedItemIndex; }
