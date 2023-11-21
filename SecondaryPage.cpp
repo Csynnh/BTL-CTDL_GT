@@ -1,5 +1,5 @@
 ﻿
-
+/*
 
 #include "SecondaryPage.h"
 
@@ -74,71 +74,6 @@ void SecondaryPage::draw(RenderWindow& window)
 	m_blocks.Render(window);
 	m_texts.Render(window);
 }
-// void SecondaryPage::Hover(int PosX, int PosY)
-// {
-// 	for (int i = 0; i < 7; i++)
-// 	{
-// 		if (PosX > 40 + 73 * i && PosX < 106 + 73 * i && PosY < 640)
-// 			m_blocks.AddBlockContainer("images/bg-gray-hover.png", 40 + 73 * i, 5.75 * 85, 1, 1);
-// 	}
-// 	for (int i = 0; i < 2; i++)
-// 	{
-// 		if (PosX > 40 + (260 + 73) * i && PosX < 330 + 73 * i)
-// 			m_blocks.AddBlockContainer("images/bg-gray-larger-hover.png", 40 + (260 + 25) * i, 640, 1, 1);
-// 	}
-// }
-// void SecondaryPage::Blur(int PosX, int PosY)
-// {
-// 	if (PosY < 640)
-// 	{
-// 		for (int i = 0; i < 7; i++)
-// 		{
-// 			m_blocks.AddBlockContainer("images/bg-gray.png", 40 + 73 * i, 5.75 * 85, 1, 1);
-// 		}
-// 	}
-// }
-// void SecondaryPage::hoverDate(int Posx, int PosY)
-// {
-// 	int xMinGray = 40;
-// 	int yMinGray = 470; // khong doi
-// 	int xMaxGray = 524;
-// 	int yMaxGray = 516; // khong doi
-// 	if ((Posx > xMinGray && Posx < xMaxGray))
-// 	{
-// 		if (PosY > yMinGray && PosY < yMaxGray)
-// 		{
-// 			for (int i = 0; i < 7; i++)
-// 			{
-// 				if (Posx < 106 + 73 * i || Posx > 113 + 73 * i)
-// 				{
-// 					Hover(Posx, PosY);
-// 				}
-// 				else
-// 				{
-// 					Blur(Posx, PosY);
-// 				}
-// 			}
-// 		}
-// 		else if (PosY > 640 && PosY < 740)
-// 		{
-// 			for (int i = 0; i < 4; i++)
-// 			{
-// 				if (Posx < 260 || Posx > 330)
-// 				{
-// 					Hover(Posx, PosY);
-// 				}
-// 				else
-// 				{
-// 					Blur(Posx, PosY);
-// 				}
-// 			}
-// 		}
-// 	}
-// 	else
-// 	{
-// 		Blur(Posx, PosY);
-// 	}
-// }
 
 void SecondaryPage::ChoseDate(BlockContainer& m_blocks, TextContainer& m_texts)
 {
@@ -298,9 +233,7 @@ void SecondaryPage::clearChoseCenima()
 	if (CenimaWasSelected < 0)
 	{
 		m_blocks.AddBlockContainer("images/bg-white.png", xPos, 4.95 * yPos + 1 * 150, 1, 1);
-		// if (TimeWasSelected > 0)
-		/*for (int i = 0; i < 5; i++)
-			m_texts.pop();*/
+	
 	}
 	for (int i = 0; i < 4; i++)
 	{
@@ -315,9 +248,7 @@ void SecondaryPage::clearChoseTime()
 	if (TimeWasSelected < 0)
 	{
 		m_blocks.AddBlockContainer("images/bg-white.png", xPos, 5 * yPos + 2 * 174, 1, 1);
-		/*if (CenimaWasSelected >= 0)
-			for (int i = 0; i < 8; i++)
-				m_texts.pop();*/
+	
 	}
 	for (int i = 0; i < 7; i++)
 	{
@@ -334,7 +265,7 @@ void SecondaryPage::HandleMouseClick(int x, int y)
 
 	this->HandleChoseDate(x, y);
 	this->HandleChoseCenima(x, y);
-	if (TimeWasSelected != -1) {
+	if (CenimaWasSelected != -1) {
 		curentState += 10;
 	}
 	this->HandleChoseTime(x, y);
@@ -356,12 +287,27 @@ void SecondaryPage::SetCurrentState(int state)
 }
 
 
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 // scr bên dưới của nhánh dataBase
-/*
+
 
 #include "SecondaryPage.h"
 
@@ -374,10 +320,11 @@ SecondaryPage::SecondaryPage(int num) : m_blocks("second"), m_texts("second")
 	fontDesc.loadFromFile("fonts/Montserrat/Montserrat-Regular.ttf");
 	fontHeader.loadFromFile("fonts/Montserrat/Montserrat-Semibold.ttf");
 	selectedItemIndex = num;
-
+	curentState = num;
 	listMovie x;
+	int index = num % 11;
 
-	string filePath = x.a[0].filePath;
+	string filePath = x.a[index].filePath;
 	string filePathIconPrev = "images/icon-prev.png";
 
 	// icon previous
@@ -444,73 +391,6 @@ void SecondaryPage::draw(RenderWindow& window)
 	m_blocks.Render(window);
 	m_texts.Render(window);
 }
-// void SecondaryPage::Hover(int PosX, int PosY)
-// {
-// 	for (int i = 0; i < 7; i++)
-// 	{
-// 		if (PosX > 40 + 73 * i && PosX < 106 + 73 * i && PosY < 640)
-// 			m_blocks.AddBlockContainer("images/bg-gray-hover.png", 40 + 73 * i, 5.75 * 85, 1, 1);
-// 	}
-// 	for (int i = 0; i < 2; i++)
-// 	{
-// 		if (PosX > 40 + (260 + 73) * i && PosX < 330 + 73 * i)
-// 			m_blocks.AddBlockContainer("images/bg-gray-larger-hover.png", 40 + (260 + 25) * i, 640, 1, 1);
-// 	}
-// }
-// void SecondaryPage::Blur(int PosX, int PosY)
-// {
-// 	if (PosY < 640)
-// 	{
-// 		for (int i = 0; i < 7; i++)
-// 		{
-// 			m_blocks.AddBlockContainer("images/bg-gray.png", 40 + 73 * i, 5.75 * 85, 1, 1);
-// 		}
-// 	}
-// }
-// void SecondaryPage::hoverDate(int Posx, int PosY)
-// {
-// 	int xMinGray = 40;
-// 	int yMinGray = 470; // khong doi
-// 	int xMaxGray = 524;
-// 	int yMaxGray = 516; // khong doi
-// 	if ((Posx > xMinGray && Posx < xMaxGray))
-// 	{
-// 		if (PosY > yMinGray && PosY < yMaxGray)
-// 		{
-// 			for (int i = 0; i < 7; i++)
-// 			{
-// 				if (Posx < 106 + 73 * i || Posx > 113 + 73 * i)
-// 				{
-// 					Hover(Posx, PosY);
-// 				}
-// 				else
-// 				{
-// 					Blur(Posx, PosY);
-// 				}
-// 			}
-// 		}
-// 		else if (PosY > 640 && PosY < 740)
-// 		{
-// 			for (int i = 0; i < 4; i++)
-// 			{
-// 				if (Posx < 260 || Posx > 330)
-// 				{
-// 					Hover(Posx, PosY);
-// 				}
-// 				else
-// 				{
-// 					Blur(Posx, PosY);
-// 				}
-// 			}
-// 		}
-// 	}
-// 	else
-// 	{
-// 		Blur(Posx, PosY);
-// 	}
-// }
-
-
 
 
 void SecondaryPage::ChoseDate(BlockContainer& m_blocks, TextContainer& m_texts)
@@ -525,7 +405,7 @@ void SecondaryPage::ChoseDate(BlockContainer& m_blocks, TextContainer& m_texts)
 	m_blocks.AddBlockContainer("images/bg-red.png", xPos, 4.95 * yPos + 0 * 150, 0.3, 0.3);
 	for (int i = 0; i < 7; i++)
 	{
-		m_blocks.AddBlockContainer("images/bg-gray.png", xPos + wBgGray * i, 5.75 * yPos, 1, 1);
+		m_blocks.AddBlockContainer("images/bg-gray-page2.png", xPos + wBgGray * i, 5.75 * yPos, 1, 1);
 	}
 }
 void SecondaryPage::ChoseCenima(BlockContainer& m_blocks, TextContainer& m_texts)
@@ -555,7 +435,7 @@ void SecondaryPage::ChoseTime(BlockContainer& m_blocks, TextContainer& m_texts)
 	for (int i = 0; i < 7; i++)
 	{
 		m_texts.AddTextContainer(time[i], fontTitle, 16, Color::Black, xPos + 22.5 + i * 73, 5.1 * yPos + 418);
-		m_blocks.AddBlockContainer("images/bg-gray.png", xPos + wBgGray * i, 5.1 * yPos + 400, 1, 1);
+		m_blocks.AddBlockContainer("images/bg-gray-page2.png", xPos + wBgGray * i, 5.1 * yPos + 400, 1, 1);
 	}
 }
 
@@ -581,7 +461,7 @@ void SecondaryPage::HandleChoseDate(int xMouse, int yMouse)
 				clearBgGray();
 				for (int i = 0; i < 7; i++)
 				{
-					m_blocks.AddBlockContainer("images/bg-gray.png", xPos + wBgGray * i, 5.75 * yPos, 1, 1);
+					m_blocks.AddBlockContainer("images/bg-gray-page2.png", xPos + wBgGray * i, 5.75 * yPos, 1, 1);
 				}
 			}
 			// handle
@@ -646,7 +526,7 @@ void SecondaryPage::HandleChoseTime(int xMouse, int yMouse)
 				TimeWasSelected = -1;
 				for (int i = 0; i < 7; i++)
 				{
-					m_blocks.AddBlockContainer("images/bg-gray.png", xPos + wBgGray * i, 5.1 * yPos + 400, 1, 1);
+					m_blocks.AddBlockContainer("images/bg-gray-page2.png", xPos + wBgGray * i, 5.1 * yPos + 400, 1, 1);
 				}
 			}
 			// handle
@@ -671,7 +551,7 @@ void SecondaryPage::clearChoseCenima()
 	if (CenimaWasSelected < 0)
 	{
 		m_blocks.AddBlockContainer("images/bg-white.png", xPos, 4.95 * yPos + 1 * 150, 1, 1);
-		// if (TimeWasSelected > 0)
+
 		for (int i = 0; i < 5; i++)
 			m_texts.pop();
 	}
@@ -698,4 +578,37 @@ void SecondaryPage::clearChoseTime()
 	}
 }
 
-*/
+void SecondaryPage::HandleMouseClick(int x, int y)
+{
+
+	if (x >= 40 && x <= 80 && y >= 40 && y <= 80) {
+		cout << "Back button" << endl;
+		curentState = 1;
+	}
+
+	this->HandleChoseDate(x, y);
+	this->HandleChoseCenima(x, y);
+	if (CenimaWasSelected != -1) {
+		curentState += 10;
+	}
+	this->HandleChoseTime(x, y);
+}
+void SecondaryPage::Click(int x, int y) {
+
+}
+int SecondaryPage::GetState()
+{
+	return selectedItemIndex;
+}
+int SecondaryPage::GetCurrentState()
+{
+	return curentState;
+}
+void SecondaryPage::SetCurrentState(int state)
+{
+	curentState = state;
+}
+
+
+
+

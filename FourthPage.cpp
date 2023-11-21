@@ -129,8 +129,12 @@ void FourthPage::HandleMouseClick(int x, int y)
         curentState -= 10;
     }
 
-    if (77 <= x && x <= 500 && 813 <= y && y <= 854) {
+    /*if (77 <= x && x <= 500 && 813 <= y && y <= 854) {
         cout << "Da xac nhan dat ve!" << endl;
+        curentState = 1;
+    }*/
+
+    if (40 <= x && x <= 200 && 575 <= y && y <= 615) {
         curentState = 1;
     }
 }

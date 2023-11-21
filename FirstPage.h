@@ -1,12 +1,14 @@
 #pragma once
 #include "TextContainer.h"
 #include "BlockContainer.h"
+#include "dataBase.h"
 #include "MainTab.h"
 class FirstPage : public MainTab
 {
 private:
 	BlockContainer m_blocks;
 	TextContainer m_texts;
+	listMovie a;
 public:
 	FirstPage(int num);
 	void draw(RenderWindow& window);

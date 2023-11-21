@@ -1,8 +1,10 @@
 ﻿#include "FirstPage.h"
 #include "SecondTab.h"
+
 #include <fstream>
 FirstPage::FirstPage(int num) : m_blocks("second"), m_texts("second")
 {
+
 	// set font default
 	selectedItemIndex = num;
 	curentState = 1;
@@ -29,12 +31,12 @@ FirstPage::FirstPage(int num) : m_blocks("second"), m_texts("second")
 
 	//m_blocks.AddBlockContainer(filePathIconPrev, xPos, 44, 0.22, 0.2);
 
-	m_blocks.AddBlockContainer(phim_1, xIconPrevPosition, yIconPrevPosition, 0.633, 0.532);
-	m_blocks.AddBlockContainer(phim_2, 320, yIconPrevPosition, 0.521, 0.466);
-	m_blocks.AddBlockContainer(phim_3, xIconPrevPosition, 392, 0.49, 0.42);
-	m_blocks.AddBlockContainer(phim_4, 320, 393, 0.408, 0.358);
-	m_blocks.AddBlockContainer(phim_5, xIconPrevPosition, 647, 0.65, 0.587);
-	m_blocks.AddBlockContainer(phim_6, 320, 647, 0.891, 0.838);
+	m_blocks.AddBlockContainer(a.a[0].filePath, xIconPrevPosition, yIconPrevPosition, 0.42, 0.37);
+	m_blocks.AddBlockContainer(a.a[1].filePath, 320, yIconPrevPosition, 0.42, 0.37);
+	m_blocks.AddBlockContainer(a.a[2].filePath, xIconPrevPosition, 392, 0.42, 0.37);
+	m_blocks.AddBlockContainer(a.a[3].filePath, 320, 393, 0.42, 0.37);
+	m_blocks.AddBlockContainer(a.a[4].filePath, xIconPrevPosition, 647, 0.42, 0.37);
+	m_blocks.AddBlockContainer(a.a[5].filePath, 320, 647, 0.42, 0.37);
 	m_blocks.AddBlockContainer(khungdo, 105, 92, 0.1769, 0.2469);
 	m_blocks.AddBlockContainer(khungden, 236, 92, 0.5454, 0.9302);
 	m_blocks.AddBlockContainer(khungden, 367, 92, 0.5454, 0.9302);
@@ -96,29 +98,28 @@ void FirstPage::Click(int x, int y) {
 
 	if (x >= xIconPrevPosition && x <= xIconPrevPosition + width && y >= yIconPrevPosition && y <= yIconPrevPosition + height)
 	{
-		curentState = 11;// Page phim 1
-		cout << "Click chuot vao phim 1	" << endl;
+		curentState = 11;
+		cout << "Da chon phim 1	" << endl;
 	}
 	else if (x >= 320 && x <= 320 + width && y >= yIconPrevPosition && y <= yIconPrevPosition + height) {
-		// truyền curentState của Page phim 2
 		curentState = 12;
-		cout << "Click vao phim 2" << endl;
+		cout << "Da chon phim 2" << endl;
 	}
 	else if (x >= xIconPrevPosition && x <= xIconPrevPosition + width && y >= 392 && y <= 392 + height) {
 		curentState = 13;
-		cout << "Click vao phim 3" << endl;
+		cout << "Da chon phim 3" << endl;
 	}
 	else if (x >= 320 && x <= 320 + width && y >= 393 && y <= 393 + height) {
 		curentState = 14;
-		cout << "Click chuot vao phim 4	" << endl;
+		cout << "Da chon phim 4	" << endl;
 	}
 	else if (x >= xIconPrevPosition && x <= xIconPrevPosition + width && y >= 647 && y <= 647 + height) {
 		curentState = 15;
-		cout << "Click chuot vao phim 5	" << endl;
+		cout << "Da chon phim 5	" << endl;
 	}
 	else if (x >= 320 && x <= 320 + width && y >= 647 && y <= 647 + height) {
 		curentState = 16;
-		cout << "Click chuot vao phim 6	" << endl;
+		cout << "Da chon phim 6	" << endl;
 	}
 }
 // Viết thêm
