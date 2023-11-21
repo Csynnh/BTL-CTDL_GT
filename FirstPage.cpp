@@ -31,12 +31,12 @@ FirstPage::FirstPage(int num) : m_blocks("second"), m_texts("second")
 
 	//m_blocks.AddBlockContainer(filePathIconPrev, xPos, 44, 0.22, 0.2);
 
-	m_blocks.AddBlockContainer(a.a[0].filePath, xIconPrevPosition, yIconPrevPosition, 0.42, 0.37);
-	m_blocks.AddBlockContainer(a.a[1].filePath, 320, yIconPrevPosition, 0.42, 0.37);
-	m_blocks.AddBlockContainer(a.a[2].filePath, xIconPrevPosition, 392, 0.42, 0.37);
-	m_blocks.AddBlockContainer(a.a[3].filePath, 320, 393, 0.42, 0.37);
-	m_blocks.AddBlockContainer(a.a[4].filePath, xIconPrevPosition, 647, 0.42, 0.37);
-	m_blocks.AddBlockContainer(a.a[5].filePath, 320, 647, 0.42, 0.37);
+	m_blocks.AddBlockContainer(a.a[0].filePath, xIconPrevPosition, yIconPrevPosition, 0.63,0.57);
+	m_blocks.AddBlockContainer(a.a[1].filePath, 320, yIconPrevPosition, 0.63,0.57);
+	m_blocks.AddBlockContainer(a.a[2].filePath, xIconPrevPosition, 392, 0.63,0.57);
+	m_blocks.AddBlockContainer(a.a[3].filePath, 320, 393, 0.63,0.57);
+	m_blocks.AddBlockContainer(a.a[4].filePath, xIconPrevPosition, 647, 0.63,0.57);
+	m_blocks.AddBlockContainer(a.a[5].filePath, 320, 647, 0.63,0.57);
 	m_blocks.AddBlockContainer(khungdo, 105, 92, 0.1769, 0.2469);
 	m_blocks.AddBlockContainer(khungden, 236, 92, 0.5454, 0.9302);
 	m_blocks.AddBlockContainer(khungden, 367, 92, 0.5454, 0.9302);

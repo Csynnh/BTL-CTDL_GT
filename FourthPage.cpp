@@ -118,9 +118,6 @@ bool FourthPage::nextButtonIsPressed(RenderWindow& window, Vector2i mousePos) {
     return (nextIcon.getGlobalBounds().contains(window.mapPixelToCoords(mousePos)));
 }
 
-
-
-
 void FourthPage::HandleMouseClick(int x, int y)
 {
     if (x >= 40 && x <= 80 && y >= 40 && y <= 80)
@@ -133,6 +130,11 @@ void FourthPage::HandleMouseClick(int x, int y)
         cout << "Da xac nhan dat ve!" << endl;
         curentState = 1;
     }*/
+
+    if (212 <= x && x <= 360 && 37 <= y && y <= 73) {
+        cout << "Click on logo" << endl;
+        curentState = 1;
+    }
 
     if (40 <= x && x <= 200 && 575 <= y && y <= 615) {
         curentState = 1;
