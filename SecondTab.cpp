@@ -47,9 +47,9 @@ SecondTab::SecondTab(int num) : m_blocks("second"), m_texts("second")
 	m_blocks.AddBlockContainer(khungdo, 236, 92, 0.1769, 0.2469);
 	m_blocks.AddBlockContainer(khungden, 367, 92, 0.5454, 0.9302);
 
-	m_texts.AddTextContainer("Phim Chieu", fontTitle, 17, Color::Black, 109, 95);
-	m_texts.AddTextContainer("Rap Chieu", fontTitle, 17, Color::White, 248, 95);
-	m_texts.AddTextContainer("Thong Tin", fontTitle, 17, Color::Black, 380, 95);
+	m_texts.AddTextContainer("Phim Chieu", fontTitle, 15, Color::Black, 109, 100);
+	m_texts.AddTextContainer("Rap Chieu", fontTitle, 15, Color::White, 248, 100);
+	m_texts.AddTextContainer("Thong Tin", fontTitle, 15, Color::Black, 380, 100);
 	//
 	m_texts.AddTextContainer("SLC2T", fontFilmName, 50, Color::Red, 212, 25);
 

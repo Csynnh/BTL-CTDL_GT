@@ -17,7 +17,7 @@ FirstPage::FirstPage(int num) : m_blocks("second"), m_texts("second")
 	{
 		// handle error
 	}
-	//string filePath = "images/data/ke-kien-tao.png";
+
 	string phim_1 = "images/data/cu-may-an-tien.png";
 	string phim_2 = "images/data/biet-doi-danh-thue.png";
 	string phim_3 = "images/data/nam-dem-kinh-hoang.png";
@@ -28,8 +28,6 @@ FirstPage::FirstPage(int num) : m_blocks("second"), m_texts("second")
 	string khungden = "images/bg-gray-larger.png";
 	float xIconPrevPosition = 109.0f;
 	float yIconPrevPosition = 148.0f;
-
-	//m_blocks.AddBlockContainer(filePathIconPrev, xPos, 44, 0.22, 0.2);
 
 	m_blocks.AddBlockContainer(a.a[0].filePath, xIconPrevPosition, yIconPrevPosition, 0.63,0.57);
 	m_blocks.AddBlockContainer(a.a[1].filePath, 320, yIconPrevPosition, 0.63,0.57);
@@ -48,16 +46,16 @@ FirstPage::FirstPage(int num) : m_blocks("second"), m_texts("second")
 	wstring wtext = L"Phim chiếu";
 	sf::String text;
 	text = sf::String::fromUtf8(begin(wtext), end(wtext));
-	m_texts.AddTextContainer("Phim Chieu", fontTitle, 15, Color::White, 109, 95);
-	m_texts.AddTextContainer("Rap Chieu", fontTitle, 15, Color::Black, 248, 95);
-	m_texts.AddTextContainer("Thong Tin", fontTitle, 15, Color::Black, 380, 95);
+	m_texts.AddTextContainer("Phim Chieu", fontTitle, 15, Color::White, 109, 100);
+	m_texts.AddTextContainer("Rap Chieu", fontTitle, 15, Color::Black, 248, 100);
+	m_texts.AddTextContainer("Thong Tin", fontTitle, 15, Color::Black, 380, 100);
 	//
-	m_texts.AddTextContainer("Cu May An Tien", fontTitle, 16, Color::Black, 133, 353);
-	m_texts.AddTextContainer("Biet Doi Danh Thue 4", fontTitle, 16, Color::Black, 321, 353);
-	m_texts.AddTextContainer("Nam Dem Kinh hoang", fontTitle, 16, Color::Black, 109, 601);
-	m_texts.AddTextContainer("The Marvel", fontTitle, 16, Color::Black, 360, 599);
-	m_texts.AddTextContainer("Ke Kien Tao", fontTitle, 16, Color::Black, 149, 855);
-	m_texts.AddTextContainer("Sieu Dang", fontTitle, 16, Color::Black, 368, 853);
+	m_texts.AddTextContainer("Nam Dem Kinh hoang", fontTitle, 16, Color::Black, 109, 353);
+	m_texts.AddTextContainer("The Marvel", fontTitle, 16, Color::Black, 321, 353);
+	m_texts.AddTextContainer("Ke Kien Tao", fontTitle, 16, Color::Black, 109, 601);
+	m_texts.AddTextContainer("Sieu Dang", fontTitle, 16, Color::Black, 321, 599);
+	m_texts.AddTextContainer("Cu May An Tien", fontTitle, 16, Color::Black, 109, 855);
+	m_texts.AddTextContainer("Biet Doi Danh Thue 4", fontTitle, 16, Color::Black, 321, 853);
 	m_texts.AddTextContainer("SLC2T", fontFilmName, 50, Color::Red, 212, 25);
 
 }

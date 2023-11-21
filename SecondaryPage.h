@@ -32,7 +32,7 @@ private:
 
 public:
 	SecondaryPage(int num);
-	~SecondaryPage();
+	~SecondaryPage(){}
 	void draw(RenderWindow& window);
 	void ChoseDate(BlockContainer& a, TextContainer& b);
 	void ChoseCenima(BlockContainer& a, TextContainer& b);

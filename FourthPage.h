@@ -2,19 +2,26 @@
 #include "TextContainer.h"
 #include "BlockContainer.h"
 #include "MainTab.h"
+#include "dataBase.h"
 class FourthPage : public MainTab
 {
 private:
 	vector<int> seats;
 	int selectedItemIndex;
-	Font font;
-	Font fontFilmName;
-	Font fontTitle;
-	Font fontDesc;
-	Font fontHeader;
-	Text menu[50];
+	Font bold;
+	Font semiBold;
+	Font regular;
 	BlockContainer m_blocks;
 	TextContainer m_texts;
+
+	float xPos = 40.0f;
+	float yPos = 85.0f;
+	float xScale = 0.55;
+	float yScale = 0.55;
+	float xLogoPosition = 220;
+	float yLogoPosition = 20.0f;
+	float xIconPrevPosition = 40.0f;
+	float yIconPrevPosition = 35.0f;
 
 public:
 	FourthPage(int num);

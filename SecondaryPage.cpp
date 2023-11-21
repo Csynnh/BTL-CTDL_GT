@@ -53,8 +53,7 @@ SecondaryPage::SecondaryPage(int num) : m_blocks("second"), m_texts("second")
 	//set film's Time content
 	m_texts.AddTextContainer("Thoi luong:", fontTitle, 18, Color::Black, xPosInfo, 262);
 	m_texts.AddTextContainer(x.a[filmIndex].time, fontDesc, 16, Color::Black, xPosInfo + 108, 264);
-	//// set film's description heading
-
+	// set film's description heading
 	m_texts.AddTextContainer("Mo ta phim", fontHeader, 26, Color::Black, xPos, 310);
 	// set film's director
 	m_texts.AddTextContainer("Dao dien:", fontTitle, 18, Color::Black, xPos, 340);
@@ -64,15 +63,12 @@ SecondaryPage::SecondaryPage(int num) : m_blocks("second"), m_texts("second")
 	m_texts.AddTextContainer("Dien vien long tieng:", fontTitle, 18, Color::Black, xPos, 365);
 	// set film's actor desc
 	m_texts.AddTextContainer(x.a[filmIndex].artist, fontDesc, 16, Color::Black, xPos + 198, 365 + 2);
-	//sửa ở đây
 	// set film' content
 	m_texts.AddTextContainer("Noi dung phim:", fontTitle, 18, Color::Black, xPos, 392);
 	m_texts.AddTextContainer(x.a[filmIndex].content, fontDesc, 16, Color::Black, xPos + 150, 392 + 2);
 
 }
-SecondaryPage::~SecondaryPage()
-{
-}
+
 void SecondaryPage::draw(RenderWindow& window)
 {
 	m_blocks.Render(window);
@@ -280,10 +276,13 @@ void SecondaryPage::HandleMouseClick(int x, int y)
 
 	this->HandleChoseDate(x, y);
 	this->HandleChoseCenima(x, y);
-	if (CenimaWasSelected != -1) {
+	/*if (CenimaWasSelected != -1) {
+		curentState += 10;
+	}*/
+	this->HandleChoseTime(x, y);
+	if (TimeWasSelected != -1) {
 		curentState += 10;
 	}
-	this->HandleChoseTime(x, y);
 }
 void SecondaryPage::Click(int x, int y) {
 

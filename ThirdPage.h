@@ -8,12 +8,10 @@ class ThirdPage : public MainTab
 private:
 	vector<int> seats;
 	int selectedItemIndex;
-	Font font;
 	Font exBold;
 	Font bold;
 	Font semiBold;
 	Font regular;
-	Text menu[50];
 	BlockContainer m_blocks;
 	TextContainer m_texts;
 
