@@ -1,5 +1,4 @@
 ﻿#pragma once
-#pragma once
 #include "TextContainer.h"
 #include "BlockContainer.h"
 #include "MainTab.h"

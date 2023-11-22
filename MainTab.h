@@ -3,13 +3,10 @@
 #include "BlockContainer.h"
 class MainTab {
 protected:
-	vector<int> seats;
 	int selectedItemIndex;
-	Font font;
-	Font fontFilmName;
-	Font fontTitle;
-	Font fontDesc;
-	Font fontHeader;
+	Font bold;
+	Font semiBold;
+	Font regular;
 	int curentState;// ID của các page
 public:
 	MainTab() {}// hàm mặc định

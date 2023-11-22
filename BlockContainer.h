@@ -16,5 +16,10 @@ public:
     ~BlockContainer() {}
     void AddBlockContainer(string filepath, float xPosotion, float yPosotion, float xScale, float yScale);
     void Render(RenderWindow& ref);
+    void reset() {
+        while (!m_components.empty()) {
+            m_components.pop_back();
+        }
+    }
 };
 

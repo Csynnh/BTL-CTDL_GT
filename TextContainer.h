@@ -17,5 +17,10 @@ public:
     void pop() {
         m_components.pop_back();
     }
+    void reset() {
+        while (!m_components.empty()) {
+            m_components.pop_back();
+        }
+    }
     void Render(RenderWindow &ref);
 };

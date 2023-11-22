@@ -9,12 +9,6 @@ class SecondaryPage : public MainTab
 {
 private:
 	int selectedItemIndex;
-	Font font;
-	Font fontFilmName;
-	Font fontTitle;
-	Font fontDesc;
-	Font fontHeader;
-	Text menu[50];
 	BlockContainer m_blocks;
 	TextContainer m_texts;
 

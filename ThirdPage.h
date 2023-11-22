@@ -6,14 +6,12 @@
 class ThirdPage : public MainTab
 {
 private:
+	int price = 0;
 	vector<int> seats;
 	int selectedItemIndex;
-	Font exBold;
-	Font bold;
-	Font semiBold;
-	Font regular;
 	BlockContainer m_blocks;
 	TextContainer m_texts;
+	TextContainer seatInfo;
 
 	float xPos = 40.0f;
 	float yPos = 85.0f;
@@ -28,10 +26,13 @@ public:
 	ThirdPage(int num);
 	~ThirdPage();
 	void draw(RenderWindow& window);
+	pair<int,int> getSeat() const {
+		return { seats.size(), price };
+	}
 	int seatSelected(int x, int y);
 	void seatColorUpdate(vector<int> seatIndex);
 	string seatName(int seatIndex);
-	void seatUpdate(vector<int> seats, bool key);
+	void seatUpdate(vector<int> seats);
 	void HandleMouseClick(int x, int y);
 	void Click(int x, int y);
 	int GetState();

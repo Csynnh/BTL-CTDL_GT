@@ -1,15 +1,15 @@
 ﻿#include "ThirdPage.h"
 
 
-ThirdPage::ThirdPage(int num) : m_blocks("third"), m_texts("third")
+ThirdPage::ThirdPage(int num) : m_blocks("third"), m_texts("third") , seatInfo("third")
 {
 
-    exBold.loadFromFile("fonts/Montserrat/Montserrat-ExtraBold.ttf");
+    selectedItemIndex = num;
+    curentState = num;
+
     bold.loadFromFile("fonts/Montserrat/Montserrat-Bold.ttf");
     semiBold.loadFromFile("fonts/Montserrat/Montserrat-SemiBold.ttf");
     regular.loadFromFile("fonts/Montserrat/Montserrat-Regular.ttf");
-    selectedItemIndex = num;
-    curentState = num;
 
     listMovie x;
     int filmIndex = (num - 10) % 11;
@@ -131,14 +131,8 @@ void ThirdPage::draw(RenderWindow& window)
 {
     m_blocks.Render(window);
     m_texts.Render(window);
+    seatInfo.Render(window);
 }
-
-//        yScale = 0.2;
-//    }
-//    BlockComponent button(filePath, xPos, yPos, xScale, yScale);
-//    return (button.getGlobalBounds().contains(window.mapPixelToCoords(mousePos)));
-//}
-
 
 int ThirdPage::seatSelected(int x, int y) {
 
@@ -222,66 +216,60 @@ string ThirdPage::seatName(int seatIndex) {
     return text + num;
 }
 
-void ThirdPage::seatUpdate(vector<int> seats, bool key) {
+void ThirdPage::seatUpdate(vector<int> seats) {
     float xPos = 500.0f;
     float xMarginRight = 50.0f;
-    int price = 0;
+    seatInfo.reset();
+    price = 0;
     for (int temp : seats) {
-        if (key) {
-            m_texts.AddTextContainer(seatName(temp), regular, 16, Color::Black, xPos, 793.0f);
-        }
-        else {
-            m_texts.AddTextContainer(seatName(temp), exBold, 16, Color::White, xPos, 793.0f);
-        }
+        seatInfo.AddTextContainer(seatName(temp), regular, 16, Color::Black, xPos, 793.0f);
         xPos -= xMarginRight;
         price += (temp > 28 ? 90 : 45);
     }
-    if (key) {
-        m_texts.AddTextContainer(to_string(price * 1000), regular, 16, Color::Black, 480.0f, 825.0f);
-    }
-    else {
-        m_texts.AddTextContainer(to_string(price * 1000), exBold, 16, Color::White, 480.0f, 825.0f);
+    if (price) {
+        seatInfo.AddTextContainer(to_string(price * 1000), regular, 16, Color::Black, 480.0f, 825.0f);
     }
 }
 
 void ThirdPage::HandleMouseClick(int x, int y)
 {
-   if (x >= 40 && x <= 80 && y >= 40 && y <= 80) //quay ve page 2
+   if (x >= 40 && x <= 80 && y >= 40 && y <= 80)
     {
-        cout << " Da click back button" << endl;
+        cout << "Da click back button" << endl;
         curentState -= 10;
         seats.clear();
         this->seatColorUpdate(seats);
-        this->seatUpdate(seats, 0);
+        this->seatUpdate(seats);
     }
 
-   if (212 <= x && x <= 360 && 37 <= y && y <= 73) { //quay ve page 1
+   if (212 <= x && x <= 360 && 37 <= y && y <= 73) {
        cout << "Click on logo" << endl;
        curentState = 1;
    }
 
-   if (x >= 40 && x <= 240 && y >= 415 && y <= 455) { //sang page 4
+   if (!seats.empty() && x >= 40 && x <= 240 && y >= 415 && y <= 455) {
+       //m_seats = { seats.size(), price };
+       /*m_seats.first = seats.size();
+       m_seats.second = price;*/
        curentState += 10;
    }
-   
+
    int temp = this->seatSelected(x, y);
    
-   auto it = find(seats.begin(), seats.end(), temp);
-   if (it != seats.end()) {
+   if (temp != -1) {
+       auto it = find(seats.begin(), seats.end(), temp);
        // hủy chọn nếu ghế đã được chọn trước đó
-       this->seatUpdate(seats, 0);
-       seats.erase(remove(seats.begin(), seats.end(), temp), seats.end());
-       this->seatColorUpdate(seats);
-       this->seatUpdate(seats, 1);
-       cout << '~' << this->seatName(temp) << endl;
-   }
-   else {
-       // chọn ghế nếu ghế chưa được chọn
-       if (temp != -1) {
-           this->seatUpdate(seats, 0);
-           seats.push_back(temp);
+       if (it != seats.end()) {
+           seats.erase(remove(seats.begin(), seats.end(), temp), seats.end());
+           this->seatUpdate(seats);
            this->seatColorUpdate(seats);
-           this->seatUpdate(seats, 1);
+           cout << '~' << this->seatName(temp) << endl;
+       }
+       // chọn ghế nếu ghế chưa được chọn
+       else {
+           seats.push_back(temp);
+           this->seatUpdate(seats);
+           this->seatColorUpdate(seats);
            cout << this->seatName(temp) << endl;
        }
    }
