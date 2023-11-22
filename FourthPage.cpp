@@ -58,9 +58,9 @@ FourthPage::FourthPage(int num) : m_blocks("fourth"), m_texts("fourth")
     m_blocks.AddBlockContainer("images/bg-red.png", xIconPrevPosition, yIconPrevPosition + 280, 0.25, 0.3);
     m_texts.AddTextContainer("Thong tin ve", semiBold, 20, Color::White, xIconPrevPosition + 18, yIconPrevPosition + 290);
 
-    m_blocks.AddBlockContainer("images/bg-red-3.png", xIconPrevPosition + 10, yIconPrevPosition + 330, 0.3, 0.8);
+   /*m_blocks.AddBlockContainer("images/bg-red-3.png", xIconPrevPosition + 10, yIconPrevPosition + 330, 0.3, 0.8);
     m_blocks.AddBlockContainer("images/bg-red-3.png", xIconPrevPosition + 150, yIconPrevPosition + 330, 0.3, 0.8);
-    m_blocks.AddBlockContainer("images/bg-red-3.png", xIconPrevPosition + 290, yIconPrevPosition + 330, 0.3, 0.8);
+    m_blocks.AddBlockContainer("images/bg-red-3.png", xIconPrevPosition + 290, yIconPrevPosition + 330, 0.3, 0.8);*/ 
 
     m_texts.AddTextContainer("SO LUONG", semiBold, 18, Color::Black, xIconPrevPosition, yIconPrevPosition + 410);
     m_blocks.AddBlockContainer("images/line.png", xIconPrevPosition - 50, yIconPrevPosition + 425, 1, 1);
@@ -68,14 +68,14 @@ FourthPage::FourthPage(int num) : m_blocks("fourth"), m_texts("fourth")
 
     m_blocks.AddBlockContainer("images/bg-red-3.png", xIconPrevPosition - 20, yIconPrevPosition + 480, 1.3, 0.5);
     m_texts.AddTextContainer("MA KHUYEN MAI", semiBold, 18, Color::Black, xIconPrevPosition + 15, yIconPrevPosition + 490);
-    m_blocks.AddBlockContainer("images/list.png", xIconPrevPosition + 487, yIconPrevPosition + 490, 0.3, 0.3);
+    m_blocks.AddBlockContainer("images/list-1.png", xIconPrevPosition + 487, yIconPrevPosition + 490, 0.3, 0.3);
 
     m_blocks.AddBlockContainer("images/bg-red.png", xIconPrevPosition, yIconPrevPosition + 540, 0.25, 0.3);
     m_texts.AddTextContainer("Thanh toan", semiBold, 20, Color::White, xIconPrevPosition + 25, yIconPrevPosition + 550);
 
     m_blocks.AddBlockContainer("images/bg-red-3.png", xIconPrevPosition - 20, yIconPrevPosition + 600, 1.3, 0.5);
     m_texts.AddTextContainer("PHUONG THUC THANH TOAN", semiBold, 18, Color::Black, xIconPrevPosition + 15, yIconPrevPosition + 610);
-    m_blocks.AddBlockContainer("images/list.png", xIconPrevPosition + 487, yIconPrevPosition + 610, 0.3, 0.3);
+    m_blocks.AddBlockContainer("images/list-1.png", xIconPrevPosition + 487, yIconPrevPosition + 610, 0.3, 0.3);
 
     m_texts.AddTextContainer("Tong cong", regular, 18, Color::Black, xIconPrevPosition, yIconPrevPosition + 670);
     m_texts.AddTextContainer("Giam gia", regular, 18, Color::Black, xIconPrevPosition, yIconPrevPosition + 700);
@@ -108,7 +108,7 @@ bool FourthPage::nextButtonIsPressed(RenderWindow& window, Vector2i mousePos) {
 
 void FourthPage::HandleMouseClick(int x, int y)
 {
-    if (x >= 40 && x <= 80 && y >= 40 && y <= 80)
+    if (x >= 40 && x <= 80 && y >= 40 && y <= 80) //quay ve page 3
     {
         cout << " Da click back button" << endl;
         curentState -= 10;
@@ -118,17 +118,89 @@ void FourthPage::HandleMouseClick(int x, int y)
         curentState = 1;
     }*/
 
-    if (77 <= x && x <= 500 && 813 <= y && y <= 854) {
+    if (77 <= x && x <= 500 && 813 <= y && y <= 854) { //dat ve, quay ve page 1
         cout << "Da xac nhan dat ve!" << endl;
         curentState = 1;
     }
 
-    if (212 <= x && x <= 360 && 37 <= y && y <= 73) {
+    if (212 <= x && x <= 360 && 37 <= y && y <= 73) { //quay ve page 1
         cout << "Click on logo" << endl;
         curentState = 1;
     }
 
+    if (30 <= x && x <= 555 && 520 <= y && y <= 550) { //Ma km
+        cout << "Ma khuyen mai" << endl;
+        ChoseCode(m_blocks, m_texts);
+    }
+
+    if (30 <= x && x <= 555 && 640 <= y && y <= 670) { //Phuong thuc thanh toan
+        cout << "Phuong thuc thanh toan" << endl;
+        ChoseMethod(m_blocks, m_texts);
+    }
 }
+
+void FourthPage::ChoseCode(BlockContainer& m_blocks, TextContainer& m_texts)
+{
+    string code[3] = { {"Combo cuoi tuan"}, {"Combo 1"}, {"Combo 2"} };
+    m_blocks.AddBlockContainer("images/bg-red-3.png", xIconPrevPosition - 20, yIconPrevPosition + 480, 1.3, 1.6);
+    m_texts.AddTextContainer("MA KHUYEN MAI", semiBold, 18, Color::Black, xIconPrevPosition + 15, yIconPrevPosition + 490);
+    m_blocks.AddBlockContainer("images/list-2.png", xIconPrevPosition + 487, yIconPrevPosition + 490, 0.3, 0.3);
+    for (int i = 0; i < 3; i++)
+    {
+        m_texts.AddTextContainer(code[i], regular, 16, Color::Black, xIconPrevPosition + 15, yIconPrevPosition + 520 + (i * 25));
+    }
+}
+
+void FourthPage::ResetCode(BlockContainer& m_blocks, TextContainer& m_texts)
+{
+    m_blocks.AddBlockContainer("images/bg-red-3.png", xIconPrevPosition - 20, yIconPrevPosition + 480, 1.3, 0.5);
+    m_texts.AddTextContainer("MA KHUYEN MAI", semiBold, 18, Color::Black, xIconPrevPosition + 15, yIconPrevPosition + 490);
+    m_blocks.AddBlockContainer("images/list-1.png", xIconPrevPosition + 487, yIconPrevPosition + 490, 0.3, 0.3);
+}
+
+
+void FourthPage::HandleChoseCode(int x, int y)
+{
+    if (530 <= x && x <= 550 && 525 <= y && y <= 540) { //reset ma khuyen mai
+        cout << "Reset ma khuyen mai" << endl;
+        ResetCode(m_blocks, m_texts);
+    }
+    //Xu li khi chon 1 ma khuyen mai -> resetCode() -> hien ten ma km 
+
+}
+
+void FourthPage::ChoseMethod(BlockContainer& m_blocks, TextContainer& m_texts)
+{
+    //xu li xoa chu
+
+
+    string method[3] = { {"Tien mat"}, {"MoMo"}, {"The ngan hang"} };
+    m_blocks.AddBlockContainer("images/bg-red-3.png", xIconPrevPosition - 20, yIconPrevPosition + 600, 1.3, 1.6);
+    m_texts.AddTextContainer("PHUONG THUC THANH TOAN", semiBold, 18, Color::Black, xIconPrevPosition + 15, yIconPrevPosition + 610);
+    m_blocks.AddBlockContainer("images/list-2.png", xIconPrevPosition + 487, yIconPrevPosition + 610, 0.3, 0.3);
+    for (int i = 0; i < 3; i++)
+    {
+        m_texts.AddTextContainer(method[i], regular, 16, Color::Black, xIconPrevPosition + 15, yIconPrevPosition + 520 + (i * 25) + 120 );
+    }
+}
+
+void FourthPage::ResetMethod(BlockContainer& m_blocks, TextContainer& m_texts)
+{
+    m_blocks.AddBlockContainer("images/bg-red-3.png", xIconPrevPosition - 20, yIconPrevPosition + 600, 1.3, 0.5);
+    m_texts.AddTextContainer("PHUONG THUC THANH TOAN", semiBold, 18, Color::Black, xIconPrevPosition + 15, yIconPrevPosition + 610);
+    m_blocks.AddBlockContainer("images/list-1.png", xIconPrevPosition + 487, yIconPrevPosition + 610, 0.3, 0.3);
+}
+
+void FourthPage::HandleChoseMethod(int x, int y)
+{
+    if (530 <= x && x <= 550 && 645 <= y && y <= 660) { //reset phuong thuc thanh toan
+        cout << "Reset phuong thuc thanh toan" << endl;
+        ResetMethod(m_blocks, m_texts);
+    }
+
+    //xu li khi chon 1 phuong thuc thanh toan -> resetMethod() -> hien phuong thuc thanh toan
+}
+
 void FourthPage::Click(int x, int y) {
 
 }

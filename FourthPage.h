@@ -29,10 +29,17 @@ public:
 	void draw(RenderWindow& window);
 	bool prevButtonIsPressed(RenderWindow& window, Vector2i mousePos);
 	bool nextButtonIsPressed(RenderWindow& window, Vector2i mousePos);
-	void seatUpdate(vector<int> seats);
-	void resetSeatText(vector<int> seats);
+//	void seatUpdate(vector<int> seats);
+//	void resetSeatText(vector<int> seats);
 	//	bool isSeatSelected(RenderWindow& window);
 	//	vector<int> seatSelected(RenderWindow& window);
+
+	void ChoseCode(BlockContainer& a, TextContainer& b);
+	void ResetCode(BlockContainer& a, TextContainer& b);
+	void ChoseMethod(BlockContainer& a, TextContainer& b);
+	void ResetMethod(BlockContainer& a, TextContainer& b);
+	void HandleChoseCode(int xMouse, int yMouse);
+	void HandleChoseMethod(int xMouse, int yMouse);
 	void HandleMouseClick(int x, int y);
 	void Click(int x, int y);
 	int GetState();

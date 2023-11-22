@@ -246,7 +246,7 @@ void ThirdPage::seatUpdate(vector<int> seats, bool key) {
 
 void ThirdPage::HandleMouseClick(int x, int y)
 {
-   if (x >= 40 && x <= 80 && y >= 40 && y <= 80)
+   if (x >= 40 && x <= 80 && y >= 40 && y <= 80) //quay ve page 2
     {
         cout << " Da click back button" << endl;
         curentState -= 10;
@@ -255,12 +255,12 @@ void ThirdPage::HandleMouseClick(int x, int y)
         this->seatUpdate(seats, 0);
     }
 
-   if (212 <= x && x <= 360 && 37 <= y && y <= 73) {
+   if (212 <= x && x <= 360 && 37 <= y && y <= 73) { //quay ve page 1
        cout << "Click on logo" << endl;
        curentState = 1;
    }
 
-   if (x >= 40 && x <= 240 && y >= 415 && y <= 455) {
+   if (x >= 40 && x <= 240 && y >= 415 && y <= 455) { //sang page 4
        curentState += 10;
    }
    
