@@ -72,6 +72,33 @@ void SecondaryPage::draw(RenderWindow& window)
 	m_texts.Render(window);
 }
 
+bool SecondaryPage::prevButtonIsPressed(RenderWindow& window) {
+
+	static bool isButtonPressed = false;
+	BlockComponent prevIcon("images/data/ke-kien-tao.png", 40.0f, 44.0f, 0.22, 0.2);
+
+	if (Mouse::isButtonPressed(Mouse::Left)) {
+		Vector2i mousePos = Mouse::getPosition(window);
+		if (prevIcon.getGlobalBounds().contains(window.mapPixelToCoords(mousePos))) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+bool SecondaryPage::nextButtonIsPressed(RenderWindow& window) {
+
+	BlockComponent nextIcon("images/data/ke-kien-tao.png", 40.0f, 113.0f, 0.55, 0.55);
+
+	if (Mouse::isButtonPressed(Mouse::Left)) {
+		Vector2i mousePos = Mouse::getPosition(window);
+		if (nextIcon.getGlobalBounds().contains(window.mapPixelToCoords(mousePos))) {
+			return true;
+		}
+	}
+	return false;
+}
 
 void SecondaryPage::ChoseDate(BlockContainer& m_blocks, TextContainer& m_texts)
 {
@@ -162,7 +189,8 @@ void SecondaryPage::HandleChoseCenima(int xMouse, int yMouse)
 	for (int i = 0; i < 2; i++)
 	{
 		// Hover(xMouse, yMouse);
-		if (xMouse > xMinGray + space * i && xMouse < 260 + space * i && yMouse <= yMaxGray && yMouse >= yMinGray && CenimaWasSelected != i)
+	//	if (xMouse > xMinGray + space * i && xMouse < 260 + space * i && yMouse <= yMaxGray && yMouse >= yMinGray && CenimaWasSelected != i)
+		if (xMouse > xMinGray + space * i && xMouse < 260 + space * i && yMouse <= yMinGray + 43 && yMouse >= yMinGray && CenimaWasSelected != i)
 		{
 			// clear
 			if (CenimaWasSelected >= 0)
@@ -183,6 +211,29 @@ void SecondaryPage::HandleChoseCenima(int xMouse, int yMouse)
 			cout << "Rap " << CenimaWasSelected << endl;
 
 			m_blocks.AddBlockContainer("images/bg-gray-larger-hover.png", xPos + wBgGrayLarger * (i), 5.3 * yPos + 190, 1, 1);
+			ChoseTime(m_blocks, m_texts);
+		}
+		if (xMouse > xMinGray + space * i && xMouse < 260 + space * i && yMouse <= yMaxGray && yMouse >= 5.3 * yPos + 245 && CenimaWasSelected != i + 2)
+		{
+			// clear
+			if (CenimaWasSelected >= 0)
+			{
+				TimeWasSelected = -1;
+				clearChoseCenima();
+				for (int i = 0; i < 4; i++)
+				{
+					if (i < 2)
+						m_blocks.AddBlockContainer("images/bg-gray-larger.png", xPos + wBgGrayLarger * (i), 5.3 * yPos + 190, 1, 1);
+					else
+						m_blocks.AddBlockContainer("images/bg-gray-larger.png", xPos + wBgGrayLarger * (i - 2), 5.3 * yPos + 245, 1, 1);
+				}
+				clearChoseTime();
+			}
+			// handle
+			CenimaWasSelected = i + 2;
+			cout << "'Rap " << CenimaWasSelected << endl;
+
+			m_blocks.AddBlockContainer("images/bg-gray-larger-hover.png", xPos + wBgGrayLarger * (i), 5.3 * yPos + 245, 1, 1);
 			ChoseTime(m_blocks, m_texts);
 		}
 	}
@@ -273,7 +324,10 @@ void SecondaryPage::HandleMouseClick(int x, int y)
 
 	this->HandleChoseDate(x, y);
 	this->HandleChoseCenima(x, y);
-	if (CenimaWasSelected != -1) {
+/*	if (CenimaWasSelected != -1) {
+		curentState += 10;
+	}*/
+	if (TimeWasSelected != -1) {
 		curentState += 10;
 	}
 	this->HandleChoseTime(x, y);

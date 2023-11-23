@@ -109,7 +109,12 @@ void FourthPage::HandleMouseClick(int x, int y)
         curentState -= 10;
     }
 
-    if (40 <= x && x <= 200 && 575 <= y && y <= 615) {
+  //  if (40 <= x && x <= 200 && 575 <= y && y <= 615) {
+  //     curentState = 1;
+  //  }
+
+    if (80 <= x && x <= 500 && 830 <= y && y <= 870) { //xác nhận thanh toán, quay về page 1
+        cout << "Da xac nhan dat ve!" << endl;
         curentState = 1;
     }
 
@@ -136,7 +141,11 @@ void FourthPage::HandleMouseClick(int x, int y)
             isOfferSelected = false;
         }
     }
-
+    if (isOfferSelected) {
+        this->HandleChoseOffer(x, y);
+    }
+    
+    
     // Chọn phương thức thanh toán
     if (30 <= x && x <= 555 && 640 <= y && y <= 670) {
         if (!isPaymentSelected) {
@@ -147,6 +156,9 @@ void FourthPage::HandleMouseClick(int x, int y)
             this->resetPayment();
             isPaymentSelected = false;
         }
+    }
+    if (isPaymentSelected) {
+        this->HandleChosePayment(x, y);
     }
 }
 
@@ -159,6 +171,22 @@ void FourthPage::selectOffer()
     for (int i = 0; i < 3; i++)
     {
         t_offer.AddTextContainer(code[i], regular, 16, Color::Black, xIconPrevPosition + 15, yIconPrevPosition + 520 + (i * 25));
+    }
+}
+
+void FourthPage::HandleChoseOffer(int x, int y)
+{
+    int xMin = 30;
+    int xMax = 555;
+    int yMin = 550;
+    int yMax = 575;
+    string code[3] = { {"Combo cuoi tuan"}, {"Combo 1"}, {"Combo 2"} };
+    for (int i = 0; i < 3; i++) {
+        if (xMin <= x && x <= xMax && yMin + (25 * i) <= y && y <= yMax + (25*i)) {
+            cout << "Chon ma khuyen mai: " << code[i] << endl;
+            this->resetOffer();
+            m_texts.AddTextContainer(code[i], regular, 16, Color::Black, xIconPrevPosition + 15, yIconPrevPosition + 490);
+        }
     }
 }
 
@@ -178,6 +206,22 @@ void FourthPage::selectPayment()
     for (int i = 0; i < 3; i++)
     {
         t_payment.AddTextContainer(method[i], regular, 16, Color::Black, xIconPrevPosition + 15, yIconPrevPosition + 520 + (i * 25) + 120 );
+    }
+}
+
+void FourthPage::HandleChosePayment(int x, int y)
+{
+    int xMin = 30;
+    int xMax = 555;
+    int yMin = 670;
+    int yMax = 695;
+    string method[3] = { {"Tien mat"}, {"MoMo"}, {"The ngan hang"} };
+    for (int i = 0; i < 3; i++) {
+        if (xMin <= x && x <= xMax && yMin + (25 * i) <= y && y <= yMax + (25 * i)) {
+            cout << "Chon phuong thuc thanh toan: " << method[i] << endl;
+            this->resetPayment();
+            m_texts.AddTextContainer(method[i], regular, 16, Color::Black, xIconPrevPosition + 15, yIconPrevPosition + 610);
+        }
     }
 }
 

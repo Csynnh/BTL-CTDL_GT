@@ -37,8 +37,10 @@ public:
 	}
 	void selectOffer();
 	void resetOffer();
+	void HandleChoseOffer(int x, int y);
 	void selectPayment();
 	void resetPayment();
+	void HandleChosePayment(int x, int y);
 	void HandleMouseClick(int x, int y);
 	void Click(int x, int y);
 	int GetState();

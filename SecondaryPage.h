@@ -8,7 +8,10 @@
 class SecondaryPage : public MainTab
 {
 private:
-	int selectedItemIndex;
+	Font font;
+	Font fontFilmName;
+	Font fontTitle;
+//	int selectedItemIndex;
 	BlockContainer m_blocks;
 	TextContainer m_texts;
 
@@ -42,4 +45,11 @@ public:
 	int GetState();
 	int GetCurrentState();
 	void SetCurrentState(int state);
+	bool prevButtonIsPressed(RenderWindow& window);
+	bool nextButtonIsPressed(RenderWindow& window);
+	void handleResetValue() {
+		DateWasSelected = -1;
+		CenimaWasSelected = -1;
+		TimeWasSelected = -1;
+	}
 };
