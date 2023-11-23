@@ -4,8 +4,8 @@ using namespace std;
 class movie
 {
 public:
-	string filePath,rating, time, name, type, language, rate, director, artist, content;
-	void setData(string filePath,string rating, string time, string name, string type, string language, string rate, string director, string artist, string content) {
+	string filePath, rating, time, name, type, language, rate, director, artist, content;
+	void setData(string filePath, string rating, string time, string name, string type, string language, string rate, string director, string artist, string content) {
 		this->filePath = filePath;
 		this->rating = rating;
 		this->time = time;
@@ -32,7 +32,7 @@ public:
 			"Tieng Anh - Phu de Tieng Viet",
 			"13+",
 			"Emma Tammi",
-			"Matthew Lillard, Josh Hutcherson, Mary Stuart",
+			"Matthew Lillard, Josh Hutcherson,...",
 			"Nhan vien bao ve Mike bat dau lam viec tai ..."
 		);
 		a[1].setData(
@@ -44,7 +44,7 @@ public:
 			"Tieng Anh - Phu de Tieng Viet",
 			"13+",
 			"Nia DaCosta",
-			"Brie Larson, Samuel L. Jackson, Zawe Ashton",
+			"Brie Larson, Samuel L. Jackson,...",
 			"Phan tiep theo cua Captain Marvel (2019)"
 		);
 		a[2].setData(
@@ -68,7 +68,7 @@ public:
 			"Tieng Anh - Phu de Tieng Viet",
 			"13+",
 			"Cal Brunker",
-			"Mckenna Grace, James Marsden, Kristen Bell, chris rock, tyler perry",
+			"Mckenna Grace, James Marsden,...",
 			"Mot mang thien thach roi vao Trai Dat ..."
 		);
 		a[4].setData(
@@ -77,10 +77,10 @@ public:
 			"2 gio 13 phut",
 			"Cu may an tien",
 			"Tam ly",
-			"Tieng Han - Phu de Tieng Viet, Tieng Anh",
+			"Tieng Han - Vietsub, Tieng Anh",
 			"16+",
 			"KIM Jee-woon",
-			"SONG Kang-ho, LIM Soo-jung, OH Jung-se, JEON Yeo-been,...",
+			"SONG Kang-ho, LIM Soo-jung,...",
 			"Lay boi canh thuc te nhung nam 1970..."
 		);
 		a[5].setData(
