@@ -10,7 +10,7 @@ using namespace sf;
 using namespace std;
 const int SCRWIDTH = 585;
 const int SCRHEIGHT = 900;
-
+static pair<int, int> m_seats;
 
 int main()
 {

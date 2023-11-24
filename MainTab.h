@@ -8,6 +8,7 @@ protected:
 	Font bold;
 	Font semiBold;
 	Font regular;
+	pair<int, int> seat;
 
 	float xPos = 40.0f;
 	float yPos = 85.0f;

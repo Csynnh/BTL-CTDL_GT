@@ -1,7 +1,8 @@
 ﻿#include "ThirdPage.h"
 
 
-ThirdPage::ThirdPage(int num) : m_blocks("third"), m_texts("third") , seatInfo("third")
+ThirdPage::ThirdPage(int num) : m_blocks("third"), m_texts("third"), seatInfo("third"), t_offer("third"),
+b_offer("third"), t_payment("third"), b_payment("third")
 {
 
     selectedItemIndex = num;
@@ -132,6 +133,10 @@ void ThirdPage::draw(RenderWindow& window)
     m_blocks.Render(window);
     m_texts.Render(window);
     seatInfo.Render(window);
+    b_payment.Render(window);
+    t_payment.Render(window);
+    b_offer.Render(window);
+    t_offer.Render(window);
 }
 
 int ThirdPage::seatSelected(int x, int y) {
@@ -231,17 +236,153 @@ void ThirdPage::seatUpdate(vector<int> seats) {
     }
 }
 
+
+
+/* */           
+
+
+void ThirdPage::selectOffer()
+{
+    string code[3] = { {"Combo cuoi tuan"}, {"Combo 1"}, {"Combo 2"} };
+    b_offer.AddBlockContainer("images/bg-red-3.png", xIconPrevPosition - 20, yIconPrevPosition + 480, 1.3, 1.6);
+    b_offer.AddBlockContainer("images/list-2.png", xIconPrevPosition + 487, yIconPrevPosition + 490, 0.3, 0.3);
+    for (int i = 0; i < 3; i++)
+    {
+        t_offer.AddTextContainer(code[i], regular, 16, Color::Black, xIconPrevPosition + 15, yIconPrevPosition + 520 + (i * 25));
+    }
+}
+
+void ThirdPage::resetOffer()
+{
+    t_offer.reset();
+    b_offer.reset();
+}
+
+
+void ThirdPage::resetPayment()
+{
+    t_payment.reset();
+    b_payment.reset();
+}
+
+
+void ThirdPage::selectPayment()
+{
+    string method[3] = { {"Tien mat"}, {"MoMo"}, {"The ngan hang"} };
+    b_payment.AddBlockContainer("images/bg-red-3.png", xIconPrevPosition - 20, yIconPrevPosition + 600, 1.3, 1.6);
+    b_payment.AddBlockContainer("images/list-2.png", xIconPrevPosition + 487, yIconPrevPosition + 610, 0.3, 0.3);
+    for (int i = 0; i < 3; i++)
+    {
+        t_payment.AddTextContainer(method[i], regular, 16, Color::Black, xIconPrevPosition + 15, yIconPrevPosition + 520 + (i * 25) + 120);
+    }
+}
+
+
+void ThirdPage::setBill() {
+
+    listMovie x;
+    int filmIndex = (curentState - 10) % 11;
+    string filePath = x.a[filmIndex].filePath;
+    string filePathIconPrev = "images/icon-prev.png";
+
+    m_blocks.AddBlockContainer(filePath, xPos, 113, xScale, yScale);
+    m_blocks.AddBlockContainer(filePathIconPrev, xPos, 44, 0.22, 0.2);
+
+
+    m_texts.AddTextContainer("SLC2T", bold, 50, Color::Red, 212, 35);
+    // set film's name
+    m_texts.AddTextContainer(x.a[filmIndex].name, bold, 30, Color::Black, 220 - 15, 100);
+    // set film's category
+    m_texts.AddTextContainer("The loai:", semiBold, 18, Color::Black, xLogoPosition - 15, 135);
+    // set film's category content
+    m_texts.AddTextContainer(x.a[filmIndex].type, regular, 16, Color::Black, xLogoPosition - 15 + 85, 137);
+    // set film's time
+    m_texts.AddTextContainer("Thoi luong:", semiBold, 18, Color::Black, xLogoPosition - 15, 160);
+    // set film's time content
+    m_texts.AddTextContainer(x.a[filmIndex].time, regular, 16, Color::Black, xLogoPosition - 15 + 110, 162);
+    // set film's language
+    m_texts.AddTextContainer("Ngon ngu:", semiBold, 18, Color::Black, xLogoPosition - 15, 185);
+    // set film's language content
+    m_texts.AddTextContainer(x.a[filmIndex].language, regular, 16, Color::Black, xLogoPosition - 15 + 105, 187);
+    // set film's Rate
+    m_texts.AddTextContainer("Danh gia:", semiBold, 18, Color::Black, xLogoPosition - 15, 210);
+    // set film's Rate content
+    m_texts.AddTextContainer(x.a[filmIndex].rating, regular, 16, Color::Black, xLogoPosition - 15 + 100, 212);
+    // set film's Date
+    m_texts.AddTextContainer("Khoi Chieu:", semiBold, 18, Color::Black, xLogoPosition - 15, 235);
+    // set film's Date content
+    m_texts.AddTextContainer("10/11/2023", regular, 16, Color::Black, xLogoPosition - 15 + 110, 237);
+
+    // set bg-action
+    Texture bgRed;
+    bgRed.loadFromFile("images/bg-red.png");
+    Sprite bgAction(bgRed);
+    bgAction.setScale(0.3, 0.3);
+    bgAction.setPosition(xIconPrevPosition, yIconPrevPosition + 380);
+    // set action'title
+    Text actionTitle("Thong tin ve", semiBold, 18);
+    actionTitle.setFillColor(Color::Black);
+    actionTitle.move(xIconPrevPosition + 25, yIconPrevPosition + 390);
+
+    m_blocks.AddBlockContainer("images/bg-red.png", xIconPrevPosition, yIconPrevPosition + 280, 0.25, 0.3);
+    m_texts.AddTextContainer("Thong tin ve", semiBold, 20, Color::White, xIconPrevPosition + 18, yIconPrevPosition + 290);
+
+    m_texts.AddTextContainer("Vui long kiem tra thong tin truoc khi xac nhan!", regular, 16, Color::Black, xIconPrevPosition + 60, yIconPrevPosition + 360);
+
+   
+    string totalPrice = to_string(price * 100) + " VND";
+
+    m_texts.AddTextContainer("SO LUONG", semiBold, 18, Color::Black, xIconPrevPosition, yIconPrevPosition + 410);
+    m_texts.AddTextContainer(to_string(seats.size()), semiBold, 18, Color::Black, xIconPrevPosition + 400, yIconPrevPosition + 410);
+    m_blocks.AddBlockContainer("images/line.png", xIconPrevPosition - 50, yIconPrevPosition + 425, 1, 1);
+    m_texts.AddTextContainer("Tong", regular, 18, Color::Black, xIconPrevPosition, yIconPrevPosition + 440);
+    m_texts.AddTextContainer(totalPrice, semiBold, 18, Color::Black, xIconPrevPosition + 400, yIconPrevPosition + 440);
+
+
+   /* m_blocks.AddBlockContainer("images/bg-red-3.png", xIconPrevPosition - 20, yIconPrevPosition + 480, 1.3, 0.5);
+    t_offer.AddTextContainer("MA KHUYEN MAI", semiBold, 18, Color::Black, xIconPrevPosition + 15, yIconPrevPosition + 490);
+    m_blocks.AddBlockContainer("images/list-1.png", xIconPrevPosition + 487, yIconPrevPosition + 490, 0.3, 0.3);
+
+    m_blocks.AddBlockContainer("images/bg-red.png", xIconPrevPosition, yIconPrevPosition + 540, 0.25, 0.3);
+    m_texts.AddTextContainer("Thanh toan", semiBold, 20, Color::White, xIconPrevPosition + 25, yIconPrevPosition + 550);
+
+    m_blocks.AddBlockContainer("images/bg-red-3.png", xIconPrevPosition - 20, yIconPrevPosition + 600, 1.3, 0.5);
+    t_payment.AddTextContainer("PHUONG THUC THANH TOAN", semiBold, 18, Color::Black, xIconPrevPosition + 15, yIconPrevPosition + 610);
+    m_blocks.AddBlockContainer("images/list-1.png", xIconPrevPosition + 487, yIconPrevPosition + 610, 0.3, 0.3);*/
+
+    /*m_texts.AddTextContainer("Tong cong", regular, 18, Color::Black, xIconPrevPosition, yIconPrevPosition + 670);
+    m_texts.AddTextContainer("Giam gia", regular, 18, Color::Black, xIconPrevPosition, yIconPrevPosition + 700);
+    m_blocks.AddBlockContainer("images/line.png", xIconPrevPosition - 50, yIconPrevPosition + 720, 1, 1);
+    m_texts.AddTextContainer("Tong", semiBold, 20, Color::Black, xIconPrevPosition, yIconPrevPosition + 750);
+    */
+
+    m_blocks.AddBlockContainer("images/bg-red.png", xIconPrevPosition + 30, yIconPrevPosition + 550, 0.65, 0.45);
+    m_texts.AddTextContainer("Xac nhan thanh toan", semiBold, 25, Color::White, xIconPrevPosition + 130, yIconPrevPosition + 560);
+}
+
+
+//
+
+
+
+
+
 void ThirdPage::HandleMouseClick(int x, int y)
 {
     // trở về page2 nếu bấm vào nút prev
    if (x >= 40 && x <= 80 && y >= 40 && y <= 80)
    {
         cout << "Back button" << endl;
-        curentState -= 10;
-        // xóa các ghế vừa chọn được chọn
-        seats.clear();
-        this->seatColorUpdate(seats);
-        this->seatUpdate(seats);
+        if (!isBillShowed) {
+            curentState -= 10;
+            // xóa các ghế vừa chọn được chọn
+            seats.clear();
+            this->seatColorUpdate(seats);
+            this->seatUpdate(seats);
+        }
+       /* else {
+            
+        }*/
    }
 
    // click logo chuyển về trang đầu tiên
@@ -250,10 +391,19 @@ void ThirdPage::HandleMouseClick(int x, int y)
        curentState = 1;
    }
 
+   if (isBillShowed && 75 <= x && x <= 587 && 500 <= y && y <= 650) {
+       curentState = 1;
+   }
+
    // kiểm tra nếu ghế đã được chọn và bấm vào nút thì chuyển sang page4
    // nếu ghế chưa được chọn thì k cho chuyển
    if (!seats.empty() && x >= 40 && x <= 240 && y >= 415 && y <= 455) {
-       curentState += 10;
+       m_texts.reset();
+       m_blocks.reset();
+       seatInfo.reset();
+       this->setBill();
+       isBillShowed = true;
+       //this->selectOffer();
    }
 
 

@@ -40,9 +40,9 @@ enum eScreen
 class ScreenManager {
 private:
 	MainTab** maintablist; // Khai báo mảng con trỏ để quản lý
-	int size = 21; // xem tất cả các page có bao nhiu để khai báo size
-	eScreen current = Tab_1; // mặc định khi chạy là firstTab
-	//eScreen current = Page4_1; // mặc định khi chạy là firstTab
+	int size = 15; // xem tất cả các page có bao nhiu để khai báo size
+	//eScreen current = Tab_1; // mặc định khi chạy là firstTab
+	eScreen current = Page3_1; // mặc định khi chạy là firstTab
 public:
 	ScreenManager()
 	{
@@ -66,12 +66,12 @@ public:
 		maintablist[13] = new ThirdPage(Page3_5);
 		maintablist[14] = new ThirdPage(Page3_6);
 
-		maintablist[15] = new FourthPage(Page4_1);
+		/*maintablist[15] = new FourthPage(Page4_1);
 		maintablist[16] = new FourthPage(Page4_2);
 		maintablist[17] = new FourthPage(Page4_3);
 		maintablist[18] = new FourthPage(Page4_4);
 		maintablist[19] = new FourthPage(Page4_5);
-		maintablist[20] = new FourthPage(Page4_6);
+		maintablist[20] = new FourthPage(Page4_6);*/
 
 	}
 	// giải phóng vùng nhớ
