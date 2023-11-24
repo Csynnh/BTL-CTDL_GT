@@ -8,20 +8,8 @@
 class SecondaryPage : public MainTab
 {
 private:
-	Font font;
-	Font fontFilmName;
-	Font fontTitle;
-//	int selectedItemIndex;
 	BlockContainer m_blocks;
 	TextContainer m_texts;
-
-	float xPos = 40.0f;
-	float yPos = 85.0f;
-	float xScale = 0.55;
-	float yScale = 0.55;
-	float xPosInfo = 200.0f;
-	float wBgGray = 73;
-	float wBgGrayLarger = 285;
 
 	int DateWasSelected = -1;
 	int CenimaWasSelected = -1;

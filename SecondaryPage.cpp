@@ -314,6 +314,10 @@ void SecondaryPage::HandleMouseClick(int x, int y)
 
 	if (x >= 40 && x <= 80 && y >= 40 && y <= 80) {
 		cout << "Back button" << endl;
+		this->clearBgGray();
+		this->clearChoseCenima();
+		this->clearChoseTime();
+		this->handleResetValue();
 		curentState = 1;
 	}
 
@@ -324,16 +328,14 @@ void SecondaryPage::HandleMouseClick(int x, int y)
 
 	this->HandleChoseDate(x, y);
 	this->HandleChoseCenima(x, y);
-/*	if (CenimaWasSelected != -1) {
+	// chương để tạm
+	/*if (CenimaWasSelected != -1) {
 		curentState += 10;
 	}*/
+	this->HandleChoseTime(x, y);
 	if (TimeWasSelected != -1) {
 		curentState += 10;
 	}
-	this->HandleChoseTime(x, y);
-	/*if (TimeWasSelected != -1) {
-		curentState += 10;
-	}*/
 }
 void SecondaryPage::Click(int x, int y) {
 

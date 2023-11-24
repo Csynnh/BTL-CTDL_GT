@@ -1,24 +1,16 @@
 ﻿#include "FirstPage.h"
 #include "SecondTab.h"
-
 #include <fstream>
+
 FirstPage::FirstPage(int num) : m_blocks("second"), m_texts("second")
 {
-
-
-	selectedItemIndex = num;
 	curentState = 1;
+	selectedItemIndex = num;
 
 	bold.loadFromFile("fonts/Montserrat/Montserrat-Bold.ttf");
 	semiBold.loadFromFile("fonts/Montserrat/Montserrat-SemiBold.ttf");
 	regular.loadFromFile("fonts/Montserrat/Montserrat-Regular.ttf");
 
-	string phim_1 = "images/data/cu-may-an-tien.png";
-	string phim_2 = "images/data/biet-doi-danh-thue.png";
-	string phim_3 = "images/data/nam-dem-kinh-hoang.png";
-	string phim_4 = "images/data/marvel.png";
-	string phim_5 = "images/data/ke-kien-tao.png";
-	string phim_6 = "images/data/sieu-dang.png";
 	string khungdo = "images/bg-red.png";
 	string khungden = "images/bg-gray-larger.png";
 	float xIconPrevPosition = 109.0f;
@@ -34,13 +26,15 @@ FirstPage::FirstPage(int num) : m_blocks("second"), m_texts("second")
 	m_blocks.AddBlockContainer(khungden, 236, 92, 0.5454, 0.9302);
 	m_blocks.AddBlockContainer(khungden, 367, 92, 0.5454, 0.9302);
 	//
-	ifstream fin("input.txt");
+	/*ifstream fin("input.txt");
 	string phim;
 	std::getline(fin, phim);
 	fin.close();
 	wstring wtext = L"Phim chiếu";
 	sf::String text;
-	text = sf::String::fromUtf8(begin(wtext), end(wtext));
+	text = sf::String::fromUtf8(begin(wtext), end(wtext));*/
+	m_texts.AddTextContainer("SLC2T", bold, 50, Color::Red, 212, 25);
+
 	m_texts.AddTextContainer("Phim Chieu", semiBold, 15, Color::White, 109, 100);
 	m_texts.AddTextContainer("Rap Chieu", semiBold, 15, Color::Black, 248, 100);
 	m_texts.AddTextContainer("Thong Tin", semiBold, 15, Color::Black, 380, 100);
@@ -51,7 +45,6 @@ FirstPage::FirstPage(int num) : m_blocks("second"), m_texts("second")
 	m_texts.AddTextContainer("Sieu Dang", semiBold, 16, Color::Black, 321, 599);
 	m_texts.AddTextContainer("Cu May An Tien", semiBold, 16, Color::Black, 109, 855);
 	m_texts.AddTextContainer("Biet Doi Danh Thue 4", semiBold, 16, Color::Black, 321, 853);
-	m_texts.AddTextContainer("SLC2T", bold, 50, Color::Red, 212, 25);
 
 }
 void FirstPage::draw(RenderWindow& window)

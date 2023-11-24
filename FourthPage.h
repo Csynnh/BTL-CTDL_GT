@@ -7,7 +7,6 @@
 class FourthPage : public MainTab
 {
 private:
-	int selectedItemIndex;
 	pair<int, int> m_seats;
 	BlockContainer m_blocks;
 	TextContainer m_texts;
@@ -19,15 +18,6 @@ private:
 	bool isOfferSelected = false;
 	bool isPaymentSelected = false;
 
-	float xPos = 40.0f;
-	float yPos = 85.0f;
-	float xScale = 0.55;
-	float yScale = 0.55;
-	float xLogoPosition = 220;
-	float yLogoPosition = 20.0f;
-	float xIconPrevPosition = 40.0f;
-	float yIconPrevPosition = 35.0f;
-
 public:
 	FourthPage(int num);
 	~FourthPage();
@@ -37,10 +27,10 @@ public:
 	}
 	void selectOffer();
 	void resetOffer();
-	void HandleChoseOffer(int x, int y);
 	void selectPayment();
+	//void paymentIndex(int x, int y);
+	//void offerIndex(int x, int y);
 	void resetPayment();
-	void HandleChosePayment(int x, int y);
 	void HandleMouseClick(int x, int y);
 	void Click(int x, int y);
 	int GetState();

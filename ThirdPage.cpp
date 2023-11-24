@@ -233,29 +233,32 @@ void ThirdPage::seatUpdate(vector<int> seats) {
 
 void ThirdPage::HandleMouseClick(int x, int y)
 {
+    // trở về page2 nếu bấm vào nút prev
    if (x >= 40 && x <= 80 && y >= 40 && y <= 80)
-    {
-        cout << "Da click back button" << endl;
+   {
+        cout << "Back button" << endl;
         curentState -= 10;
+        // xóa các ghế vừa chọn được chọn
         seats.clear();
         this->seatColorUpdate(seats);
         this->seatUpdate(seats);
-    }
+   }
 
+   // click logo chuyển về trang đầu tiên
    if (212 <= x && x <= 360 && 37 <= y && y <= 73) {
        cout << "Click on logo" << endl;
        curentState = 1;
    }
 
+   // kiểm tra nếu ghế đã được chọn và bấm vào nút thì chuyển sang page4
+   // nếu ghế chưa được chọn thì k cho chuyển
    if (!seats.empty() && x >= 40 && x <= 240 && y >= 415 && y <= 455) {
-       //m_seats = { seats.size(), price };
-       /*m_seats.first = seats.size();
-       m_seats.second = price;*/
        curentState += 10;
    }
 
+
    int temp = this->seatSelected(x, y);
-   
+
    if (temp != -1) {
        auto it = find(seats.begin(), seats.end(), temp);
        // hủy chọn nếu ghế đã được chọn trước đó
@@ -273,6 +276,7 @@ void ThirdPage::HandleMouseClick(int x, int y)
            cout << this->seatName(temp) << endl;
        }
    }
+
 }
 void ThirdPage::Click(int x, int y) {
 

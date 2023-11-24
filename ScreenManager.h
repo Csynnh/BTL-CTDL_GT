@@ -42,6 +42,7 @@ private:
 	MainTab** maintablist; // Khai báo mảng con trỏ để quản lý
 	int size = 21; // xem tất cả các page có bao nhiu để khai báo size
 	eScreen current = Tab_1; // mặc định khi chạy là firstTab
+	//eScreen current = Page4_1; // mặc định khi chạy là firstTab
 public:
 	ScreenManager()
 	{
