@@ -360,10 +360,7 @@ void ThirdPage::setBill() {
     m_texts.AddTextContainer("Xac nhan thanh toan", semiBold, 25, Color::White, xIconPrevPosition + 130, yIconPrevPosition + 560);
 }
 
-
 //
-
-
 
 
 
@@ -403,7 +400,6 @@ void ThirdPage::HandleMouseClick(int x, int y)
        seatInfo.reset();
        this->setBill();
        isBillShowed = true;
-       //this->selectOffer();
    }
 
 

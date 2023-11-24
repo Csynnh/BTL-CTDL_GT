@@ -30,19 +30,19 @@ enum eScreen
 	Page3_5,
 	Page3_6,
 
-	Page4_1 = 31,
+	/*Page4_1 = 31,
 	Page4_2,
 	Page4_3,
 	Page4_4,
 	Page4_5,
-	Page4_6
+	Page4_6*/
 };
 class ScreenManager {
 private:
 	MainTab** maintablist; // Khai báo mảng con trỏ để quản lý
 	int size = 15; // xem tất cả các page có bao nhiu để khai báo size
-	//eScreen current = Tab_1; // mặc định khi chạy là firstTab
-	eScreen current = Page3_1; // mặc định khi chạy là firstTab
+	eScreen current = Tab_1; // mặc định khi chạy là firstTab
+	//eScreen current = Page3_1; // mặc định khi chạy là firstTab
 public:
 	ScreenManager()
 	{

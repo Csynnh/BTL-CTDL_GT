@@ -329,13 +329,13 @@ void SecondaryPage::HandleMouseClick(int x, int y)
 	this->HandleChoseDate(x, y);
 	this->HandleChoseCenima(x, y);
 	// chương để tạm
-	if (CenimaWasSelected != -1) {
-		curentState += 10;
-	}
-	/*this->HandleChoseTime(x, y);
-	if (TimeWasSelected != -1) {
+	/*if (CenimaWasSelected != -1) {
 		curentState += 10;
 	}*/
+	this->HandleChoseTime(x, y);
+	if (TimeWasSelected != -1) {
+		curentState += 10;
+	}
 }
 void SecondaryPage::Click(int x, int y) {
 
